@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "default": "redact",
+  "rules": {"EMAIL": "tokenize", "SECRET": "block"},
+  "restore": true,
+  "cache_seconds": 60
+}

@@ -1,0 +1,12 @@
+Captured from an actual local execution during the build session, before the queue-test additions.
+The redaction and vault implementations measured here were unchanged in those additions.
+Command: go test -bench . -benchmem -run '^$' ./internal/gateway
+
+goos: windows
+goarch: amd64
+pkg: github.com/Rohan-Kale/PrivateAI-Gateway/internal/gateway
+cpu: AMD Ryzen 7 7800X3D 8-Core Processor
+BenchmarkRedact-16             5366127       214.8 ns/op       792 B/op        3 allocs/op
+BenchmarkVaultRoundTrip-16     2872664       404.6 ns/op        328 B/op       10 allocs/op
+PASS
+ok github.com/Rohan-Kale/PrivateAI-Gateway/internal/gateway 3.313s

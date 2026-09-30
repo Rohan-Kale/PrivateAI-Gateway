@@ -1,0 +1,7 @@
+{
+  "issue": {
+    "number": 7,
+    "title": "Gateway returns an error when the detector times out",
+    "body": "Steps to reproduce: stop the detector, then send a synthetic request. Expected: a clear unavailable response without forwarding the prompt."
+  }
+}

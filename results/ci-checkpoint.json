@@ -1,0 +1,157 @@
+[
+  {
+    "name": "manifests",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-09-30T00:03:12Z",
+    "completed_at": "2026-09-30T00:03:24Z",
+    "html_url": "https://github.com/Rohan-Kale/PrivateAI-Gateway/actions/runs/36648355597/job/109676495206",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run pip install -r requirements-dev.txt",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run python scripts/check_manifests.py",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run ansible-playbook -i ansible/inventory.example.ini ansible/provision.yml --syntax-check",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run kubectl kustomize kubernetes > /tmp/privateai-rendered.yaml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  },
+  {
+    "name": "test",
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-09-30T00:03:12Z",
+    "completed_at": "2026-09-30T00:05:50Z",
+    "html_url": "https://github.com/Rohan-Kale/PrivateAI-Gateway/actions/runs/36648355597/job/109676495460",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-go@v5",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run go vet ./...",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run go test -race -coverprofile=coverage.out ./...",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run python -m unittest discover -s tests -v",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run python scripts/bootstrap.py",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker compose up --build -d --wait",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker compose --profile test run --rm integration",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker compose --profile test run --build --rm database-test",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker compose exec -T prometheus promtool check config /etc/prometheus/prometheus.yml",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Run docker compose down -v",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-python@v5",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/setup-go@v5",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success"
+      }
+    ]
+  }
+]

@@ -1,0 +1,15 @@
+test_deleted_secret_not_flagged (test_python.AgentTests.test_deleted_secret_not_flagged) ... ok
+test_pr_secrets_not_repeated (test_python.AgentTests.test_pr_secrets_not_repeated) ... ok
+test_privileged_rejected (test_python.AgentTests.test_privileged_rejected) ... ok
+test_triage_no_actions (test_python.AgentTests.test_triage_no_actions) ... ok
+test_multiline_private_key (test_python.DetectionTests.test_multiline_private_key) ... ok
+test_no_false_card (test_python.DetectionTests.test_no_false_card) ... ok
+test_overlap_secret_dominates (test_python.DetectionTests.test_overlap_secret_dominates) ... ok
+test_size_limit (test_python.DetectionTests.test_size_limit) ... ok
+test_types (test_python.DetectionTests.test_types) ... ok
+test_utf8_offsets (test_python.DetectionTests.test_utf8_offsets) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.001s
+
+OK
