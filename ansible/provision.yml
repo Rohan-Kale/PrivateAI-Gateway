@@ -9,12 +9,21 @@
     privateai_ssh_cidr: ''
     privateai_env_file: /etc/privateai/worker.env
     privateai_worker_env: {}
+    privateai_manage_worker_network: false
+    privateai_worker_network: privateai-worker
+    privateai_network_subnet: ''
+    privateai_mount_enabled: false
+    privateai_mount_source: ''
+    privateai_mount_path: /srv/privateai/data
+    privateai_mount_fstype: ext4
+    privateai_mount_options: defaults,nosuid,nodev
+    privateai_kvm_operators: []
   pre_tasks:
     - name: Validate host and required explicit configuration
       ansible.builtin.assert:
         that:
           - ansible_distribution == 'Ubuntu'
-          - ansible_distribution_version == '24.04'
+          - ansible_distribution_version in ['24.04', '26.04']
           - privateai_worker_env | length > 0
           - privateai_worker_env.DATABASE_URL is defined
           - privateai_worker_env.REDIS_URL is defined
@@ -25,7 +34,7 @@
           - privateai_worker_env.DETECTOR_URL is defined
           - privateai_worker_env.PROVIDER_URL is defined
           - not privateai_manage_firewall or privateai_ssh_cidr | length > 0
-        fail_msg: Provide worker secrets via Ansible Vault; target Ubuntu 24.04 and set an SSH source CIDR before managing the firewall.
+        fail_msg: Provide worker secrets via Ansible Vault; target Ubuntu 24.04/26.04 and set an SSH source CIDR before managing the firewall.
       no_log: true
   roles:
     - worker

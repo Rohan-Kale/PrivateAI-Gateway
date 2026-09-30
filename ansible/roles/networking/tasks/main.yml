@@ -1,0 +1,28 @@
+---
+- name: Validate explicitly requested worker network
+  ansible.builtin.assert:
+    that:
+      - privateai_worker_network | default('privateai-worker') is match('^[a-zA-Z0-9][a-zA-Z0-9_-]+$')
+      - privateai_network_subnet | length > 0
+    fail_msg: Set a non-overlapping privateai_network_subnet for the dedicated worker bridge.
+
+- name: Inspect existing Docker worker bridge
+  ansible.builtin.command:
+    argv: [docker, network, inspect, '{{ privateai_worker_network }}']
+  register: privateai_network_inspect
+  changed_when: false
+  failed_when: privateai_network_inspect.rc not in [0, 1]
+  check_mode: false
+
+- name: Reject a conflicting existing subnet
+  ansible.builtin.assert:
+    that:
+      - (privateai_network_inspect.stdout | from_json)[0].IPAM.Config[0].Subnet == privateai_network_subnet
+    fail_msg: Existing network has a different subnet; choose another network name instead of replacing it.
+  when: privateai_network_inspect.rc == 0
+
+- name: Create isolated worker bridge
+  ansible.builtin.command:
+    argv: [docker, network, create, --driver, bridge, --subnet, '{{ privateai_network_subnet }}', '{{ privateai_worker_network }}']
+  when: privateai_network_inspect.rc != 0
+  changed_when: true

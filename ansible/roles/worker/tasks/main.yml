@@ -12,11 +12,20 @@
     enabled: true
     state: started
 
-- name: Install optional KVM tools
-  ansible.builtin.apt:
-    name: [qemu-kvm, libvirt-daemon-system, libvirt-clients]
-    state: present
+- name: Configure optional KVM host support
+  ansible.builtin.include_role:
+    name: kvm
   when: privateai_enable_kvm | bool
+
+- name: Configure optional worker bridge network
+  ansible.builtin.include_role:
+    name: networking
+  when: privateai_manage_worker_network | bool
+
+- name: Configure optional persistent filesystem mount
+  ansible.builtin.include_role:
+    name: filesystem
+  when: privateai_mount_enabled | bool
 
 - name: Create worker configuration directory
   ansible.builtin.file:

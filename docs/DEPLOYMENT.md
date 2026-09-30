@@ -65,10 +65,11 @@ The embedded schema ConfigMap must match `migrations/001_init.sql`; the static v
 
 ## Ansible worker hosts
 
-This playbook targets **Ubuntu 24.04** and installs Docker, an encrypted-secrets environment file, and a restartable systemd inference-worker service. KVM package installation is optional; VM creation and cluster enrollment are not implemented. Firewall changes are opt-in and require an explicit SSH management CIDR to avoid accidental lockout.
+This playbook targets **Ubuntu 24.04/26.04** and installs Docker, a root-only environment file, and a restartable systemd inference-worker service. Ansible Vault protects the source secrets file; the runtime environment file contains plaintext secrets with mode 0600. Optional roles configure a Docker bridge, mount an existing filesystem, and install/verify KVM and libvirt. VM creation and cluster enrollment are not implemented. Firewall changes are opt-in and require an explicit SSH management CIDR to avoid accidental lockout.
 
 ```sh
 python -m pip install -r requirements-dev.txt
+ansible-galaxy collection install -r ansible/requirements.yml
 cp ansible/inventory.example.ini ansible/inventory.ini
 cp ansible/secrets.example.yml ansible/secrets.yml
 # Edit both files: actual host, registry image digest, TLS service URLs, and keys.
@@ -92,4 +93,4 @@ Use a disposable stack and synthetic content:
 4. Make the mock/provider unavailable. Jobs retry at most three times and end in `failed`; completed jobs remain readable for 24 hours.
 5. Try fetching another tenant's job ID. It returns the same 404 as a nonexistent job.
 
-The automated suite covers these invariants at unit and HTTP integration levels. It does not claim a production chaos test, long-running soak, multi-node Kubernetes resilience test, or provisioning-time measurement.
+The automated suite covers these invariants at unit and HTTP integration levels. The separate [experiment suite](EXPERIMENTS.md) runs a sustained local queue soak and measures fault-to-webhook receipt. It does not establish production resilience, multi-node Kubernetes behavior, or provisioning speed without fresh-host trials.

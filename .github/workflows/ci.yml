@@ -29,6 +29,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: {python-version: '3.13'}
       - run: pip install -r requirements-dev.txt
+      - run: ansible-galaxy collection install -r ansible/requirements.yml
       - run: python scripts/check_manifests.py
       - run: ansible-playbook -i ansible/inventory.example.ini ansible/provision.yml --syntax-check
       - run: kubectl kustomize kubernetes > /tmp/privateai-rendered.yaml

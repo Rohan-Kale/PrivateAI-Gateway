@@ -52,7 +52,7 @@ This is **buffered streaming compatibility**, not immediate pass-through. Time t
 
 ## Observability
 
-Metrics contain aggregate counters and duration sum/count, not prompts, tenant labels, tokens, or error payloads. The duration summary supports mean latency; it does not expose server-side p95/p99. Percentiles in the benchmark report are measured by the client. Metric names follow [Prometheus naming guidance](https://prometheus.io/docs/practices/naming/).
+Metrics contain aggregate counters and duration sum/count, not prompts, tenant labels, tokens, or error payloads. The overall request duration summary supports mean latency; it does not expose server-side p95/p99. Policy lookup time and first-attempt queue wait use cumulative histogram buckets. Queue depth measures Redis stream entries, including pending entries. Percentiles in the benchmark reports are measured from client/job samples. Metric names follow [Prometheus naming guidance](https://prometheus.io/docs/practices/naming/).
 
 Prometheus scrapes gateway and worker instances. Example queries:
 
@@ -64,4 +64,4 @@ sum(privateai_inflight)
 sum(increase(privateai_jobs_failed_total[10m]))
 ```
 
-Errors include policy blocks and capacity rejections. Authentication failures and invalid HTTP requests are rejected before engine counters increment. Alerting distinguishes availability and terminal job failures but does not include an Alertmanager deployment or notification routing.
+Errors include policy blocks and capacity rejections. Authentication failures and invalid HTTP requests are rejected before engine counters increment. The default stack supplies alert rules. The isolated experiment overlay additionally deploys Alertmanager, readiness probes, and a local timestamped webhook receiver to measure actual notification delivery. Email/SMS routing is not configured.

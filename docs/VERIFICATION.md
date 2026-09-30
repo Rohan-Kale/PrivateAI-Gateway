@@ -1,5 +1,7 @@
 # Verification record
 
+This page records the original implementation checks. The subsequent claim-validation protocols are in [EXPERIMENTS.md](EXPERIMENTS.md); the architecture and file walkthroughs are in [LEARNING_GUIDE.md](LEARNING_GUIDE.md) and [FILE_GUIDE.md](FILE_GUIDE.md). The September 30 experiments use Docker Engine installed inside Ubuntu WSL; the earlier Docker Desktop limitation below describes the original baseline, not the current experiment environment.
+
 ## Confirmed
 
 - Repository inspection: the GitHub repository was empty, with no commits or existing files to preserve.

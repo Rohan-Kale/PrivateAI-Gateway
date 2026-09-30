@@ -9,7 +9,7 @@ Restart=always
 RestartSec=5
 TimeoutStopSec=70
 ExecStartPre=-/usr/bin/docker rm -f privateai-worker
-ExecStart=/usr/bin/docker run --name privateai-worker --read-only --cap-drop=ALL --security-opt=no-new-privileges --env-file={{ privateai_env_file }} -p 127.0.0.1:8081:8080 {{ privateai_image }} worker
+ExecStart=/usr/bin/docker run --name privateai-worker --read-only --cap-drop=ALL --security-opt=no-new-privileges --env-file={{ privateai_env_file }}{% if privateai_manage_worker_network %} --network={{ privateai_worker_network }}{% endif %}{% if privateai_mount_enabled %} --mount=type=bind,source={{ privateai_mount_path }},target=/worker-data{% endif %} -p 127.0.0.1:8081:8080 {{ privateai_image }} worker
 ExecStop=/usr/bin/docker stop -t 60 privateai-worker
 ExecStopPost=-/usr/bin/docker rm privateai-worker
 

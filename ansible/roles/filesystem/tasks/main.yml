@@ -1,0 +1,46 @@
+---
+- name: Validate mount request
+  ansible.builtin.assert:
+    that:
+      - privateai_mount_source | length > 0
+      - privateai_mount_path is match('^/srv/privateai/[a-zA-Z0-9_-]+$')
+      - privateai_mount_fstype in ['ext4', 'xfs', 'nfs', 'nfs4']
+    fail_msg: Provide an existing filesystem source and a mount under /srv/privateai/. This role never formats a disk.
+
+- name: Create worker data mountpoint
+  ansible.builtin.file:
+    path: '{{ privateai_mount_path }}'
+    state: directory
+    mode: '0750'
+    owner: '10001'
+    group: '10001'
+
+- name: Inspect any existing persistent mount entry
+  ansible.builtin.command:
+    argv: [findmnt, --fstab, --noheadings, --output, SOURCE, --target, '{{ privateai_mount_path }}']
+  register: privateai_existing_mount
+  changed_when: false
+  failed_when: privateai_existing_mount.rc not in [0, 1]
+  check_mode: false
+
+- name: Reject an existing mount from a different source
+  ansible.builtin.assert:
+    that:
+      - privateai_existing_mount.rc != 0 or privateai_existing_mount.stdout | trim == privateai_mount_source
+    fail_msg: Mountpoint already has another source; refusing to replace it.
+
+- name: Configure persistent worker data mount
+  ansible.posix.mount:
+    path: '{{ privateai_mount_path }}'
+    src: '{{ privateai_mount_source }}'
+    fstype: '{{ privateai_mount_fstype }}'
+    opts: '{{ privateai_mount_options }}'
+    state: mounted
+
+- name: Grant the worker access to the mounted filesystem root
+  ansible.builtin.file:
+    path: '{{ privateai_mount_path }}'
+    state: directory
+    owner: '10001'
+    group: '10001'
+    mode: '0750'
