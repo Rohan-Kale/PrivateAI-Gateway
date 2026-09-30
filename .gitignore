@@ -15,9 +15,6 @@ ansible/secrets.yml
 experiments/fixtures/secrets-v1.json
 experiments/fixtures/validation-v2/corpus.json
 
-# ==========================================
-# Generated benchmark / validation results
-# ==========================================
 
 # Dated/raw validation bundles
 results/claims-*/
@@ -25,16 +22,7 @@ results/claims-*/
 # Performance improvement test runs
 results/improvement-round-*/
 
-# Keep top-level summarized results such as:
-# results/go-benchmarks.txt
-# results/python-tests.txt
-# results/measured-local.json
-# results/measured-initial-failures.json
-# results/ci-checkpoint.json
 
-# ==========================================
-# Go
-# ==========================================
 bin/
 *.exe
 *.dll
@@ -43,9 +31,6 @@ bin/
 *.test
 *.out
 
-# ==========================================
-# Python
-# ==========================================
 __pycache__/
 *.py[cod]
 
@@ -58,17 +43,11 @@ venv/
 .coverage
 htmlcov/
 
-# ==========================================
-# IDE / OS
-# ==========================================
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
 
-# ==========================================
-# Logs / temporary files
-# ==========================================
 *.log
 *.tmp
 *.temp
