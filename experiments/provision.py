@@ -30,6 +30,7 @@ def trial(args):
     metadata={**provenance(),"experiment":"fresh-worker-provision-v1","mode":args.mode,"host_machine_id_sha256":fingerprint,"base_image_sha256":args.base_image_sha256,"host_metadata":hardware,"image_freshness":"operator attestation plus absence of /etc/privateai/worker.env","workload":"complete one queued synthetic request on the provisioned worker","warm_cache":args.warm_cache}
     input("Fresh-host prerequisites checked. Press Enter to start the real timer.")
     start=time.perf_counter();record={**metadata,"completed":False}
+    record["configuration_profile"]=args.profile
     try:
         if args.mode=="manual":
             print("Perform the documented manual setup now in another terminal. Match the automated role options exactly.")
@@ -37,6 +38,8 @@ def trial(args):
         else:
             if not args.inventory or not args.vars_file:raise ValueError("ansible mode requires --inventory and --vars-file")
             subprocess.run(["ansible-playbook","-i",args.inventory,"ansible/provision.yml","--limit",args.limit,"-e","@"+args.vars_file],check=True)
+        setup_finished=time.perf_counter()
+        record["setup_seconds"]=setup_finished-start
         worker=ssh(args.host,"sudo -n docker inspect --format '{{.Config.Hostname}}' privateai-worker")
         key=demo_key();status,data=http(args.gateway+"/v1/jobs",{"model":"mock","messages":[{"role":"user","content":"Synthetic provisioning readiness probe"}]},key)
         if status!=202:raise RuntimeError("readiness job could not be enqueued")
@@ -49,6 +52,7 @@ def trial(args):
         if result["status"]!="completed" or result.get("worker")!=worker:
             raise RuntimeError("job did not complete on the intended worker; stop competing workers and retry on a fresh host")
         record.update(completed=True,seconds_to_first_job=time.perf_counter()-start,job_id=data["id"],worker=worker)
+        record["readiness_verification_seconds"]=time.perf_counter()-setup_finished
     except (Exception,KeyboardInterrupt) as error:
         record.update(failed_after_seconds=time.perf_counter()-start,error_type=type(error).__name__)
         raise
@@ -57,6 +61,6 @@ def trial(args):
 
 
 if __name__=="__main__":
-    p=argparse.ArgumentParser();p.add_argument("--mode",choices=["manual","ansible"],required=True);p.add_argument("--host",required=True);p.add_argument("--base-image-sha256",required=True);p.add_argument("--warm-cache",action="store_true");p.add_argument("--inventory");p.add_argument("--vars-file");p.add_argument("--limit",default="worker-01");p.add_argument("--gateway",default=os.environ.get("GATEWAY_URL","http://127.0.0.1:18080"));p.add_argument("--output",required=True);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("--mode",choices=["manual","ansible"],required=True);p.add_argument("--host",required=True);p.add_argument("--base-image-sha256",required=True);p.add_argument("--warm-cache",action="store_true");p.add_argument("--profile",default="worker-only",help="operator-defined configuration profile, identical across comparison hosts");p.add_argument("--inventory");p.add_argument("--vars-file");p.add_argument("--limit",default="worker-01");p.add_argument("--gateway",default=os.environ.get("GATEWAY_URL","http://127.0.0.1:18080"));p.add_argument("--output",required=True);a=p.parse_args()
     if len(a.base_image_sha256)!=64 or any(c not in "0123456789abcdef" for c in a.base_image_sha256):p.error("--base-image-sha256 must be a SHA-256 hex digest")
     trial(a)

@@ -33,7 +33,7 @@ def assignment(participant):
     for pair,(label,titles) in enumerate(PAIRS):
         modes=["manual","assisted"];rng.shuffle(modes)
         for index,(title,mode) in enumerate(zip(titles,modes)):
-            cases.append({"pair":pair,"id":f"{pair}-{index}","title":title,"body":"Classify the reported behavior and assign high priority only to security reports.","expected_label":label,"expected_priority":"high" if label=="security" else "normal","mode":mode})
+            cases.append({"pair":pair,"id":f"{pair}-{index}","title":title,"body":"","expected_label":label,"expected_priority":"high" if label=="security" else "normal","mode":mode})
     rng.shuffle(cases);return cases
 
 
@@ -50,14 +50,18 @@ def summarize(rows,complete):
 def run(participant,output):
     path=Path(output)
     if path.exists():raise ValueError("choose a fresh output file; previous trials cannot be overwritten")
-    rows=[];cases=assignment(participant);metadata={**provenance(),"experiment":"human-triage-v1","participant":participant,"assistance":"deterministic Python issue agent","protocol":"Randomized matched issue pairs. Timer includes reading, proposal generation, decisions, and corrections. Accuracy is checked against synthetic gold labels.","limitations":"One participant, synthetic examples, possible learning/order effects; not a real issue-tracker productivity estimate."}
+    rows=[];cases=assignment(participant);metadata={**provenance(),"experiment":"human-triage-v2","participant":participant,"assistance":"deterministic Python issue agent with review rationale","protocol":"Randomized matched issue pairs. Participant rubric is separate from agent issue input. Timer includes reading, proposal generation, decisions, and corrections. Accuracy is checked against synthetic gold labels.","limitations":"One participant, synthetic development examples, possible learning/order effects; not a blinded holdout or real issue-tracker productivity estimate."}
     print("24 cases. Enter: LABEL PRIORITY. Labels: security, bug, documentation, enhancement. Priorities: high, normal.")
+    print("Classify the reported behavior and assign high priority only to security reports.")
     input("Press Enter when ready. The next case starts the clock.")
     try:
         for case in cases:
             start=time.perf_counter();proposal=triage(case) if case["mode"]=="assisted" else None
             print(f"\n[{case['mode']}] {case['title']}\n{case['body']}")
-            if proposal:print("Agent suggestion:",proposal["labels"][0],proposal["priority"])
+            if proposal:
+                print("Agent suggestion:",proposal["labels"][0],proposal["priority"])
+                print("Matched signals:",json.dumps(proposal["matched_signals"]))
+                print("Review:"," ".join(proposal["review_steps"]))
             mistakes=0
             while True:
                 answer=input("Your reviewed classification: ").strip().lower().split()

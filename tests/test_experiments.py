@@ -6,6 +6,7 @@ from experiments.triage import assignment,summarize
 from experiments.summarize import memory_bytes
 from experiments.run import restore_service, recovered
 from mock.activity import Activity
+from experiments.compare_provision import compare
 
 class SecretExperimentTests(unittest.TestCase):
     def test_deterministic_labeled_corpus(self):
@@ -24,6 +25,13 @@ class SecretExperimentTests(unittest.TestCase):
         self.assertIsNone(wilson(0,0))
 
 class TriageStudyTests(unittest.TestCase):
+    def test_participant_rubric_is_not_agent_issue_content(self):
+        cases=assignment("participant-a")
+        self.assertTrue(all(c["body"]=="" for c in cases))
+        from agents.issue_triage import triage
+        docs=next(c for c in cases if c["title"]=="Docs omit the policy version field")
+        self.assertEqual(triage(docs)["labels"],["documentation"])
+
     def test_balanced_assignment_is_reproducible(self):
         cases=assignment("participant-a")
         self.assertEqual(cases,assignment("participant-a"))
@@ -79,3 +87,20 @@ class ProviderActivityTests(unittest.TestCase):
         self.assertEqual(activity.snapshot()["calls"],2)
         self.assertTrue(activity.reset())
         self.assertEqual(activity.snapshot()["peak_active"],0)
+
+class ProvisionComparisonTests(unittest.TestCase):
+    def fixtures(self):
+        return [{"completed":True,"base_image_sha256":"synthetic-unit-fixture","warm_cache":False,"configuration_profile":"worker-only","host_machine_id_sha256":str(i),"mode":"manual" if i<3 else "ansible","seconds_to_first_job":seconds} for i,seconds in enumerate([10,11,12,4,5,6])]
+
+    def test_comparison_requires_repetitions_and_equivalent_hosts(self):
+        rows=self.fixtures()
+        self.assertEqual(compare(rows)["modes"]["manual"]["median_seconds"],11)
+        with self.assertRaises(ValueError):compare(rows[:2])
+        rows[-1]["warm_cache"]=True
+        with self.assertRaises(ValueError):compare(rows)
+
+    def test_failure_or_reused_host_cannot_be_silently_accepted(self):
+        rows=self.fixtures();rows[-1]["completed"]=False
+        with self.assertRaises(ValueError):compare(rows)
+        rows=self.fixtures();rows[-1]["host_machine_id_sha256"]=rows[0]["host_machine_id_sha256"]
+        with self.assertRaises(ValueError):compare(rows)

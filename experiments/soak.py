@@ -71,6 +71,7 @@ def run(url,seconds,concurrency,output,poll_seconds=.25):
         code,provider_after=http(provider_stats_url,timeout=5)
         if code!=200:raise RuntimeError("provider concurrency measurement unavailable")
         report["provider_execution"]={"before":provider_before,"after":provider_after,"scope":"mock execution from artificial delay through response write; synchronized in one provider process"}
+        report["limitations"]="Closed-loop clients on one physical host. Provider peak is measured directly in the mock and does not establish real-model speed or continuous execution at that peak. Polling adds latency. No generator inference retries."
         report["target_conditions"]["at_least_200_simultaneous_mock_executions"]=provider_after["peak_active"]>=200
     write_report(output,report);return report
 

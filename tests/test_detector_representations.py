@@ -32,4 +32,3 @@ class RepresentationTests(unittest.TestCase):
     def test_benign_encoded_data_and_opaque_identifiers(self):
         self.assertEqual(detect(base64.b64encode(b"ordinary project documentation").decode()),[])
         self.assertEqual(detect("Request identifier AbCdEf0123456789AbCdEf0123456789"),[])
-

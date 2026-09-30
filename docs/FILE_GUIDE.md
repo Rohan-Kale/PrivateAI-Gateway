@@ -14,6 +14,7 @@ The follow-up implementation and its measurement scope are documented in `docs/I
 | `tests/test_detector_representations.py` | Tests encoded secrets, original UTF-8 offsets, JWT structure, and benign exceptions. |
 | `experiments/validation_corpus.py` | Builds distinct synthetic validation templates without detector imports. |
 | `experiments/fixtures/validation-v2/manifest.json` | Frozen canonical validation fingerprint. Raw generated values stay ignored. |
+| `experiments/compare_provision.py` | Compares at least three completed manual/automated fresh-host trials each; checks equivalent conditions and distinct host identities. |
 
 ## Root and build configuration
 
