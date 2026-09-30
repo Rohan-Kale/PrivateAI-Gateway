@@ -32,7 +32,8 @@ def digest(path):
 def write_report(path, report):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    # Stable file bytes across Windows/Linux and Git's LF normalization.
+    path.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
 
 
 def http(url, body=None, key=None, method=None, timeout=65):
