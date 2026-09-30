@@ -190,7 +190,7 @@ The September 30 evidence bundle has these files:
 | `results/claims-2026-09-30/faults-initial-worker-trials.json` | Unmodified first three worker results preserved before resuming the fault sequence. |
 | `results/claims-2026-09-30/SHA256SUMS` | Integrity fingerprints for the retained evidence files. |
 
-## Files intentionally outside version control
+## Improvement-round evidence
 
 The improvement-round evidence preserves new measurements separately:
 
@@ -213,6 +213,8 @@ The improvement-round evidence preserves new measurements separately:
 | `results/improvement-round-1/sustained/resources.jsonl` | Full-run server resource time series. |
 | `results/improvement-round-1/sustained/resource-summary.json` | Derived full-run resources and verified raw job count. |
 | `results/improvement-round-1/SHA256SUMS` | Integrity hashes for these evidence files. |
+
+## Files intentionally outside version control
 
 `.env` contains real local keys. `.cache/` holds downloaded/build tooling. `work/` holds logs and scratch work. `work/evidence/` contains current raw experiments: environment, secret-case outcomes, policy timings, compressed load samples, resource time series, and alert receipts. Human triage/provisioning reports appear only after real trials. `experiments/fixtures/secrets-v1.json` contains generated fake credentials and is ignored. None of these should be treated as a source file to publish without review.
 
