@@ -1,0 +1,114 @@
+{
+  "commit": "22f7e04fbd239d6d97588f558d5aef0c272fe8cb",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T15:38:46.744303+00:00",
+  "python": "3.14.7",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "logical_cpus": 16,
+  "experiment": "sustained-queue-v1",
+  "provider": "mock with configured synthetic delay",
+  "mock_delay_ms": "1000",
+  "storage": "PostgreSQL and Redis",
+  "topology": "separate load-generator container on the same physical host; not separate hardware",
+  "duration_seconds_requested": 900,
+  "elapsed_with_drain_seconds": 905.107051186,
+  "configured_clients": 200,
+  "peak_outstanding_clients": 200,
+  "requests": 142813,
+  "statuses": {
+    "completed": 142813
+  },
+  "successful_jobs_per_second": 157.78575563284596,
+  "worker_completions": {
+    "82b90cd01b58": 47634,
+    "5a720710795d": 47600,
+    "85c1b51a0e10": 47579
+  },
+  "latency_seconds": {
+    "p50": 1.2603947239999798,
+    "p95": 1.2730878380000092,
+    "p99": 1.2834094819999962
+  },
+  "queue_wait_seconds": {
+    "p50": 0.0008,
+    "p95": 0.001305,
+    "p99": 0.001826
+  },
+  "service_seconds": {
+    "p50": 1.091549,
+    "p95": 1.139674,
+    "p99": 1.143107
+  },
+  "per_minute_statuses": {
+    "0": {
+      "completed": 9614
+    },
+    "1": {
+      "completed": 9466
+    },
+    "2": {
+      "completed": 9565
+    },
+    "3": {
+      "completed": 9471
+    },
+    "4": {
+      "completed": 9558
+    },
+    "5": {
+      "completed": 9473
+    },
+    "6": {
+      "completed": 9555
+    },
+    "7": {
+      "completed": 9495
+    },
+    "8": {
+      "completed": 9530
+    },
+    "9": {
+      "completed": 9536
+    },
+    "10": {
+      "completed": 9493
+    },
+    "11": {
+      "completed": 9560
+    },
+    "12": {
+      "completed": 9467
+    },
+    "13": {
+      "completed": 9588
+    },
+    "14": {
+      "completed": 9442
+    }
+  },
+  "poll_interval_seconds": 0.25,
+  "samples_file": "soak.samples.jsonl.gz",
+  "target_conditions": {
+    "at_least_15_minutes": true,
+    "at_least_200_clients": true,
+    "multiple_workers_observed": true,
+    "all_jobs_completed": true,
+    "at_least_200_simultaneous_mock_executions": true
+  },
+  "limitations": "Closed-loop clients on one physical host. Provider peak is measured directly in the mock and does not establish real-model speed or continuous execution at that peak. Polling adds latency. No generator inference retries.",
+  "provider_execution": {
+    "before": {
+      "active": 0,
+      "peak_active": 0,
+      "calls": 0,
+      "since_unix": 1790781821.6002183
+    },
+    "after": {
+      "active": 0,
+      "peak_active": 200,
+      "calls": 142813,
+      "since_unix": 1790781821.6002183
+    },
+    "scope": "mock execution from artificial delay through response write; synchronized in one provider process"
+  }
+}

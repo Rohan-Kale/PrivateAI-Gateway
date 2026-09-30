@@ -192,6 +192,28 @@ The September 30 evidence bundle has these files:
 
 ## Files intentionally outside version control
 
+The improvement-round evidence preserves new measurements separately:
+
+| File | Purpose |
+|---|---|
+| `results/improvement-round-1/environment.json` | Runtime metadata for the detection/fault checkpoint. |
+| `results/improvement-round-1/secrets.json` | Original development-set exposure outcomes after the improvements. |
+| `results/improvement-round-1/validation.json` | Distinct frozen synthetic validation outcomes and remaining misses. |
+| `results/improvement-round-1/faults.json` | Twelve protocol-v2 faults with verified baseline, receipts, and recovery. |
+| `results/improvement-round-1/alert-receipts.jsonl` | Append-only receipt history; select trials using the fault report's timestamps. |
+| `results/improvement-round-1/policy-two-arm.json` | Initial decoded-cache versus direct-PostgreSQL measurements. |
+| `results/improvement-round-1/policy-three-arm.json` | Randomized direct/legacy-Redis/decoded measurements, with both baselines explicit. |
+| `results/improvement-round-1/smoke/soak.json` | Separate 60-second check and direct mock peak of 200. |
+| `results/improvement-round-1/smoke/soak.samples.jsonl.gz` | Per-job samples from the short check. |
+| `results/improvement-round-1/smoke/resources.jsonl` | Short-check server resource observations. |
+| `results/improvement-round-1/smoke/resource-summary.json` | Derived short-check resource statistics and sample-count verification. |
+| `results/improvement-round-1/sustained/environment.json` | Updated stack metadata for the full 15-minute run. |
+| `results/improvement-round-1/sustained/soak.json` | Complete 142,813-job outcome and direct mock execution counters. |
+| `results/improvement-round-1/sustained/soak.samples.jsonl.gz` | All full-run job observations. |
+| `results/improvement-round-1/sustained/resources.jsonl` | Full-run server resource time series. |
+| `results/improvement-round-1/sustained/resource-summary.json` | Derived full-run resources and verified raw job count. |
+| `results/improvement-round-1/SHA256SUMS` | Integrity hashes for these evidence files. |
+
 `.env` contains real local keys. `.cache/` holds downloaded/build tooling. `work/` holds logs and scratch work. `work/evidence/` contains current raw experiments: environment, secret-case outcomes, policy timings, compressed load samples, resource time series, and alert receipts. Human triage/provisioning reports appear only after real trials. `experiments/fixtures/secrets-v1.json` contains generated fake credentials and is ignored. None of these should be treated as a source file to publish without review.
 
 The local `.git/` directory contains Git's objects, branches, index, and configuration. Do not edit it by hand. A commit is a source snapshot; a push transfers that history to GitHub. A Docker image is a runnable packaged snapshot; a container is a running instance of that image. Those are different objects with different lifecycles.

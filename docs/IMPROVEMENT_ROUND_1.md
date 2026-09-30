@@ -17,7 +17,57 @@ The original 900 cases are now a development/regression set because their failur
 
 The validation set includes nested encodings, fully percent-encoded values, encoded private keys, three-message fragments, Unicode fragments, JWT context, and benign encoded prose. The generator does not import detector code. Raw synthetic credential fixtures remain ignored by Git and are generated inside the Python image; only the generator and manifest are committed.
 
+## Measured detection and instrumentation checkpoint
+
+The gateway and Python images built from `05dd83f` produced these actual results:
+
+| Test | Prevention | Benign false blocks | Invalid outcomes |
+|---|---:|---:|---:|
+| Original development/regression corpus | 550/600 = 91.67% | 0/300 | 0 |
+| Distinct synthetic validation corpus | 360/400 = 90.00% | 0/240 | 0 |
+
+The original baseline was 350/600 prevented and 50/300 benign blocked. Remaining exposures in both new evaluations are the opaque, unlabeled family. In the validation corpus, benign bare identifiers have the same observable form as these opaque secrets. Reaching 99% by blocking every opaque identifier would conceal a false-positive tradeoff; these results do not justify a 99% claim.
+
+A separate **60-second instrumentation smoke test**, not a new 15-minute capacity result, completed all 9,611 jobs. The single mock provider's synchronized counter observed a peak of exactly 200 active executions and returned to zero. Raw reports live in [results/improvement-round-1](../results/improvement-round-1/), with short-load samples under `smoke/`. The short report retains its older generic client-concurrency warning; its additional `provider_execution` field supplies the direct mock observation. All runs use synthetic content and a mock provider, not a real model.
+
 Rebuild the isolated stack, run the exposure suite, then the load and fault experiments. Preserve existing work/evidence before rerunning; published baseline reports are immutable. Never combine v1 and v2 fault trials into a single success rate.
+
+## Completed sustained run
+
+The updated stack built from `22f7e04` maintained 200 closed-loop clients for 900 seconds and drained in 905.107 seconds total. **142,813/142,813 jobs completed**, with zero reported failures. Actual throughput over that elapsed time was 157.786 jobs/s. Client p50/p95/p99 latency was **1.260/1.273/1.283 seconds**. Queue-wait p95/p99 was **1.305/1.826 milliseconds**.
+
+The mock's synchronized counter started at zero, recorded **142,813 executions and a peak of 200 simultaneously active executions**, and finished at zero active calls with the same reset epoch. This establishes an observed peak, not that all 200 model calls remained continuously active throughout the run. The provider used a synthetic one-second delay. Three workers processed jobs with real PostgreSQL and Redis on one physical host.
+
+All 142,813 compressed samples were counted independently and matched the report. There were 126 resource samples with no sampling errors; worker count remained three and sampled stream depth stayed within 145–200 entries. The final sample precedes full drain; stream depth includes claimed jobs. Server resource samples exclude the one-off load-generator container. Raw data is under `results/improvement-round-1/sustained/`. Do not infer a causal latency improvement from comparison with the earlier separate load run; this was not a paired inference-latency experiment.
+
+## Completed fault protocol v2
+
+All **12/12** recorded trials received a fresh matching local webhook notification within 120 seconds and restored the service. Receipt latencies:
+
+| Stopped service | Trial 1 | Trial 2 | Trial 3 |
+|---|---:|---:|---:|
+| All three workers | 18.313 s | 14.556 s | 14.496 s |
+| Detector | 19.441 s | 19.001 s | 18.646 s |
+| PostgreSQL | 14.268 s | 14.855 s | 14.395 s |
+| Redis | 19.002 s | 19.017 s | 19.005 s |
+
+Every record includes the verified baseline and its wait time. These trials apply to sequential service outages beginning with clear evaluation/routing state and verified delivery of the previous matched resolution. Monitoring-process restart behavior and arbitrary compound failures were not tested. The original 11/12 result and missed notification remain in the historical baseline; v2 does not prove that the exact interrupted-stack failure has been eliminated in every scenario.
+
+## Policy comparisons
+
+The initial two-arm optimized-cache run measured **2.843% median improvement versus direct PostgreSQL**, across eight paired rounds of 2,000 measured lookups per mode. The median of round medians was 191.589 microseconds for direct reads and 185.803 microseconds for decoded-cache reads. One round favored direct reads. This is not a 35% improvement claim.
+
+The follow-up three-arm comparison additionally measures the previous Redis-only document-cache implementation under the same randomized workload. Its distinct baseline must accompany any improvement reported against that older implementation. The direct-PostgreSQL target is retained separately.
+
+That completed v3 run (`e8f794e`) measured **44.550% median paired latency reduction versus the previous Redis path** and **3.281% median paired improvement versus direct PostgreSQL**. Every legacy comparison favored the optimization (43.491–46.322%); one direct-read comparison favored the baseline. Median round medians were 335.341 microseconds (legacy Redis), 192.217 microseconds (direct PostgreSQL), and 185.783 microseconds (decoded cache). Each of the three modes had 16,000 measured samples after warmups. `target_met` remains false for the original 35%-versus-direct target.
+
+A defensible statement is: "Reduced policy lookup latency 44.6% versus the previous Redis-backed implementation using a bounded decoded cache while retaining authoritative PostgreSQL version checks." It would be incorrect to say Redis caching is 44.6% faster than direct PostgreSQL.
+
+## Evidence and verification
+
+Raw JSON reports, compressed per-job samples, resource time series, and append-only alert receipts are under `results/improvement-round-1/`; `SHA256SUMS` fingerprints their exact bytes. `smoke/` and `sustained/` retain separate load runs. Alert receipt history can include earlier events; the fault records identify the exact fresh matching receipts used for this protocol. Runtime images for detection/faults came from `05dd83f`, the updated sustained run from `22f7e04`, and the three-arm benchmark from `e8f794e`. Uncommitted report/README edits did not change those executable paths.
+
+Local Go tests/vet and 28 Python tests passed. The three-arm checkpoint passed [GitHub CI run 36736798964](https://github.com/Rohan-Kale/PrivateAI-Gateway/actions/runs/36736798964), including race tests, real PostgreSQL/Redis integration, all three cache-mode correctness checks, and deployment validation. Human time savings and fresh-host provisioning duration remain unmeasured.
 
 ## New files
 

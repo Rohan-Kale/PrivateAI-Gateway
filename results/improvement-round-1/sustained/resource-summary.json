@@ -1,0 +1,100 @@
+{
+  "source_sha256": {
+    "resources.jsonl": "7a9c369a854801a5e2712b80c16f241cdb9e7192a3e2002f78ca62f46af64067",
+    "soak.samples.jsonl.gz": "afba3af804268d4af8a834b129d3f9e82e166bb89c31e1545c74d8aa83f478bc",
+    "soak.json": "4e9bbf7d07a302fe36d8e600692d64f56d1d3105800c9054bb50bd7f3815b288"
+  },
+  "resource_samples": 126,
+  "sampling_errors": 0,
+  "raw_job_samples_verified": 142813,
+  "metrics": {
+    "queue_depth": {
+      "samples": 126,
+      "first": 200.0,
+      "last": 162.0,
+      "min": 145.0,
+      "max": 200.0,
+      "p50": 190.0,
+      "p95": 199.0
+    },
+    "inflight": {
+      "samples": 126,
+      "first": 68.0,
+      "last": 105.0,
+      "min": 68.0,
+      "max": 200.0,
+      "p50": 177.0,
+      "p95": 197.0
+    },
+    "worker_count": {
+      "samples": 126,
+      "first": 3.0,
+      "last": 3.0,
+      "min": 3.0,
+      "max": 3.0,
+      "p50": 3.0,
+      "p95": 3.0
+    }
+  },
+  "containers": {
+    "privateai-evidence-alertmanager-1": {
+      "peak_cpu_percent": 0.11,
+      "peak_memory_bytes": 15487467.52
+    },
+    "privateai-evidence-detector-1": {
+      "peak_cpu_percent": 20.14,
+      "peak_memory_bytes": 28961669.12
+    },
+    "privateai-evidence-gateway-1": {
+      "peak_cpu_percent": 51.02,
+      "peak_memory_bytes": 103934853.12
+    },
+    "privateai-evidence-mock-1": {
+      "peak_cpu_percent": 17.11,
+      "peak_memory_bytes": 41051750.4
+    },
+    "privateai-evidence-postgres-1": {
+      "peak_cpu_percent": 6.19,
+      "peak_memory_bytes": 121529958.4
+    },
+    "privateai-evidence-probe-1": {
+      "peak_cpu_percent": 0.27,
+      "peak_memory_bytes": 16651386.88
+    },
+    "privateai-evidence-prometheus-1": {
+      "peak_cpu_percent": 0.51,
+      "peak_memory_bytes": 32254197.76
+    },
+    "privateai-evidence-receiver-1": {
+      "peak_cpu_percent": 0.01,
+      "peak_memory_bytes": 14774435.84
+    },
+    "privateai-evidence-recorder-1": {
+      "peak_cpu_percent": 0.04,
+      "peak_memory_bytes": 13180600.32
+    },
+    "privateai-evidence-redis-1": {
+      "peak_cpu_percent": 84.4,
+      "peak_memory_bytes": 263716864.0
+    },
+    "privateai-evidence-worker-1": {
+      "peak_cpu_percent": 15.07,
+      "peak_memory_bytes": 68461527.04
+    },
+    "privateai-evidence-worker-2": {
+      "peak_cpu_percent": 15.45,
+      "peak_memory_bytes": 67758981.12
+    },
+    "privateai-evidence-worker-3": {
+      "peak_cpu_percent": 15.38,
+      "peak_memory_bytes": 67979182.08
+    }
+  },
+  "limitations": [
+    "Docker CPU percentage is relative to one logical CPU; values can exceed 100%.",
+    "Container peaks are sampled, not continuous maxima, and are not necessarily simultaneous.",
+    "The one-off load-generator container is excluded from compose ps resource samples.",
+    "Prometheus sums asynchronously scraped per-worker gauges; inflight is not a synchronized provider concurrency measurement.",
+    "Queue depth includes work already claimed by workers, not only waiting jobs."
+  ]
+}

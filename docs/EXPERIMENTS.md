@@ -72,6 +72,8 @@ Prometheus scrapes every five seconds, evaluates every five seconds, and the exp
 
 This validates a **local webhook delivery path**. It does not measure email/SMS delivery, every fault type, or production detection guarantees. Datastore failures are detected indirectly through gateway readiness. The original production-like alert file is separate; results only apply to the experiment's configured intervals and rules.
 
+Protocol v2 additionally checks Prometheus and Alertmanager for clear alert state, verifies delivery of the previous matched notification's resolution, and requires 15 stable healthy seconds before injection. The Alertmanager inspection API is available only on loopback port 19093. Baseline verification times out after 300 seconds and prevents another injection. Do not mix v1 and v2 trials; their recovery protocols differ. See [IMPROVEMENT_ROUND_1.md](IMPROVEMENT_ROUND_1.md) for current measurements and the retained baseline.
+
 If the controller is interrupted, preserve its logs and report, restore the same isolated stack, and use `python3 -m experiments.run faults --resume-faults` to skip already completed/restored trials. Do not reuse this flag for an unrelated environment or changed alert configuration. New reports persist receipt evidence before attempting restoration, so a restoration failure cannot erase the measured observation.
 
 ## 6. Fresh-host provisioning

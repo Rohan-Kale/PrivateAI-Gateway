@@ -2,6 +2,8 @@
 
 This guide explains the project as an engineering system. Read it alongside [the file-by-file reference](FILE_GUIDE.md), [experiment instructions](EXPERIMENTS.md), and [security limitations](SECURITY.md). It distinguishes implemented behavior, measured behavior, and capabilities that still need human/host validation.
 
+The first measurements described below are historical. [IMPROVEMENT_ROUND_1.md](IMPROVEMENT_ROUND_1.md) explains the subsequent encoded/cross-message detection, decoded policy cache, verified monitoring recovery, direct provider-concurrency measurement, and their new results. Its scope and baseline distinctions should accompany any newer résumé claim.
+
 ## 1. The problem the gateway addresses
 
 An application may send a prompt containing a customer's email, an account number, or a credential to a model provider. If the application calls the provider directly, the provider sees that content immediately. A privacy gateway sits between them and decides what content may cross that boundary.

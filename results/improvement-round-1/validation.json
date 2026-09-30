@@ -1,0 +1,5801 @@
+{
+  "commit": "05dd83f0b6cb4cac6f2012799a9e090261032b24",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T15:11:27.624597+00:00",
+  "python": "3.14.7",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "logical_cpus": 16,
+  "experiment": "secret-exposure-v1",
+  "corpus_sha256": "9e0646a303bf62a82b0e49db10a3040cd7b3b737e5cc4a24fcd786e3349982d2",
+  "dataset_size": 640,
+  "secret_cases": 400,
+  "benign_cases": 240,
+  "policy": {
+    "version": 7,
+    "default": "redact",
+    "rules": {
+      "SECRET": "block"
+    },
+    "restore": false,
+    "cache_seconds": 0
+  },
+  "provider": "recording synthetic provider",
+  "storage": "database",
+  "prevented": 360,
+  "exposed": 40,
+  "prevented_fraction": 0.9,
+  "wilson_95": [
+    0.8666887392099005,
+    0.925701148310355
+  ],
+  "benign_blocked": 0,
+  "false_block_fraction": 0.0,
+  "invalid_outcomes": 0,
+  "target_met": false,
+  "cases": [
+    {
+      "id": "assignment-26",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-33",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-38",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-30",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-37",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-26",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-18",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-10",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-3",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-20",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-32",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-36",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-17",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-31",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-5",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-31",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-28",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-3",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-1",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-15",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-37",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-21",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-13",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-21",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-26",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-26",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-24",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-22",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-31",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-10",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-19",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-16",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-29",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-36",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-19",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-25",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-11",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-6",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-5",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-4",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-33",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-18",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-24",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-19",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-6",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-14",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-23",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-4",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-16",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-12",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-15",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-38",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-12",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-10",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-37",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-39",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-0",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-16",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-15",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-7",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-32",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-11",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-36",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-15",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-24",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-11",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-18",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-27",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-38",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-28",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-37",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-19",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-31",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-9",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-32",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-39",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-16",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-0",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-6",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-7",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-16",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-4",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-27",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-35",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-20",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-16",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-23",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-38",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-39",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-37",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-16",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-6",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-2",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-12",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-23",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-30",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-9",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-1",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-4",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-39",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-22",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-17",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-8",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-7",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-17",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-28",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-4",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-37",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-25",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-13",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-33",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-25",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-17",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-35",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-30",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-24",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-17",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-3",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-13",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-12",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-7",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-38",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-13",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-36",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-19",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-17",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-34",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-34",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-33",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-2",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-39",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-1",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-9",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-2",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-22",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-15",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-7",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-12",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-33",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-5",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-29",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-30",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-36",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-14",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-24",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-25",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-9",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-25",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-7",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-32",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-5",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-37",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-3",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-3",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-18",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-28",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-27",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-26",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-22",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-18",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-9",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-24",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-15",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-33",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-39",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-14",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-20",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-21",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-10",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-4",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-26",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-16",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-22",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-8",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-35",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-32",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-22",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-39",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-10",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-39",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-7",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-35",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-9",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-10",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-3",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-29",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-29",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-13",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-29",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-20",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-31",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-5",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-18",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-0",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-27",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-35",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-0",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-27",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-23",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-33",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-5",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-21",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-1",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-3",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-20",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-4",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-39",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-17",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-19",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-33",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-33",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-13",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-30",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-24",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-32",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-23",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-16",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-36",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-6",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-24",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-27",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-25",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-4",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-14",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-11",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-20",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-13",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-20",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-3",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-30",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-4",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-8",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-27",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-15",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-0",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-34",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-17",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-23",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-25",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-15",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-28",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-37",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-14",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-36",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-19",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-36",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-39",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-23",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-8",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-34",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-6",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-31",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-12",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-27",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-22",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-14",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-21",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-18",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-8",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-21",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-28",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-32",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-14",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-0",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-16",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-38",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-18",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-36",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-11",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-11",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-24",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-13",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-37",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-11",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-36",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-28",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-20",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-25",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-15",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-32",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-2",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-38",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-5",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-0",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-13",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-22",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-39",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-21",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-34",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-39",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-37",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-22",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-33",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-11",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-24",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-4",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-3",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-23",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-30",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-7",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-36",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-2",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-32",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-5",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-8",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-24",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-21",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-25",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-3",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-11",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-29",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-11",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-22",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-31",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-28",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-21",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-19",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-26",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-35",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-33",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-23",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-11",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-13",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-9",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-35",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-21",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-35",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-35",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-22",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-27",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-29",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-0",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-2",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-39",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-2",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-30",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-32",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-26",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-32",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-1",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-20",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-2",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-4",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-21",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-1",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-10",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-21",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-29",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-12",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-14",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-18",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-28",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-6",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-13",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-34",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-38",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-17",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-25",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-33",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-2",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-37",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-6",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-9",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-8",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-15",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-6",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-13",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-6",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-18",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-34",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-26",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-34",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-29",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-26",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-29",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-0",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-29",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-3",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-33",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-28",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-27",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-10",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-8",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-16",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-35",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-31",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-15",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-10",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-34",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-29",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-38",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-31",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-26",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-39",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-8",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-1",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-31",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-10",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-31",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-31",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-34",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-1",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-35",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-2",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-22",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-4",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-10",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-11",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-8",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-9",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-12",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-23",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-4",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-17",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-32",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-2",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-5",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-28",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-19",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-25",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-5",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-0",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-37",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-18",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-38",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-30",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-26",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-35",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-2",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-23",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-27",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-20",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-1",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-4",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-33",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-19",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-25",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-25",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-3",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-2",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-5",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-14",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-31",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-3",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-17",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-10",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-24",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-0",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-7",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-34",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-35",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-27",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-7",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-13",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-19",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-28",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-6",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-6",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-9",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-16",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-23",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-8",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-31",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-8",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-3",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-27",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-28",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-17",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-7",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-15",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-20",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-7",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-14",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-12",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-31",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-17",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-10",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-7",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-39",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-37",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-24",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-26",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-7",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-28",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-25",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-36",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-19",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-23",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-8",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-0",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-11",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-2",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-35",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-12",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-21",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-14",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-20",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-27",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-15",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-30",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-28",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-34",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-37",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-15",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-27",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-10",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-34",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-7",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-13",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-35",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-3",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-30",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-36",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-13",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-32",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-24",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-14",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-18",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-1",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-32",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-18",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-16",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-17",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-20",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-16",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-21",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-28",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-30",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-14",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-23",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-9",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-0",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-10",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-15",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-34",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-0",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-32",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-5",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-29",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-2",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-9",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-30",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-6",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-3",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-8",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-17",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-29",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-17",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-31",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-18",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-24",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-24",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-14",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-9",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-12",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-18",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-20",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-1",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-6",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-38",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-19",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-0",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-26",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-38",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-21",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-12",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-2",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-1",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-4",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-39",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-19",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-12",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-36",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-29",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-0",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-30",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-33",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-22",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-22",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-8",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-1",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-22",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "quoted_key-18",
+      "family": "quoted_key",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-22",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-11",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-38",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-10",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-14",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-37",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-30",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-23",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-5",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-9",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-20",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-37",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-36",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-6",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-16",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-9",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-33",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-38",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-19",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-36",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "url_prose-5",
+      "family": "url_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-1",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-14",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_prose-11",
+      "family": "encoded_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "encoded_private-5",
+      "family": "encoded_private",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "jwt_context-1",
+      "family": "jwt_context",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-12",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-25",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-4",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-13",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-8",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-21",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-34",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "three_messages-26",
+      "family": "three_messages",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-16",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-29",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-7",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "bare_identifier-35",
+      "family": "bare_identifier",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-12",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "base64_url-26",
+      "family": "base64_url",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "nested_base64-20",
+      "family": "nested_base64",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-38",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-12",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-25",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-38",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "opaque_unlabeled-23",
+      "family": "opaque_unlabeled",
+      "label": "secret",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": true,
+      "valid_outcome": true
+    },
+    {
+      "id": "assignment-15",
+      "family": "assignment",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-34",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-27",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-30",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-5",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-19",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "all_percent-9",
+      "family": "all_percent",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "dotted_prose-1",
+      "family": "dotted_prose",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "public_email-6",
+      "family": "public_email",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "unicode_split-32",
+      "family": "unicode_split",
+      "label": "secret",
+      "http_status": 403,
+      "provider_calls": 0,
+      "exposed": false,
+      "valid_outcome": true
+    },
+    {
+      "id": "placeholder-11",
+      "family": "placeholder",
+      "label": "benign",
+      "http_status": 200,
+      "provider_calls": 1,
+      "exposed": false,
+      "valid_outcome": true
+    }
+  ],
+  "limitations": "Generated challenge cases, not a representative held-out corpus. No real credentials. Errors are not credited as successful prevention.",
+  "corpus_canonical_sha256": "996c69bef09132cb5ad5ec102ef2b05e803e8acf62333ffcfa8b9480cdf99fbf",
+  "corpus_name": "synthetic-validation-v2",
+  "held_out": false
+}

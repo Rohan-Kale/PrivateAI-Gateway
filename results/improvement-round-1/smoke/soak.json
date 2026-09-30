@@ -1,0 +1,72 @@
+{
+  "commit": "05dd83f0b6cb4cac6f2012799a9e090261032b24",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T15:12:39.760895+00:00",
+  "python": "3.14.7",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "logical_cpus": 16,
+  "experiment": "sustained-queue-v1",
+  "provider": "mock with configured synthetic delay",
+  "mock_delay_ms": "1000",
+  "storage": "PostgreSQL and Redis",
+  "topology": "separate load-generator container on the same physical host; not separate hardware",
+  "duration_seconds_requested": 60,
+  "elapsed_with_drain_seconds": 65.04248665,
+  "configured_clients": 200,
+  "peak_outstanding_clients": 200,
+  "requests": 9611,
+  "statuses": {
+    "completed": 9611
+  },
+  "successful_jobs_per_second": 147.76495326382175,
+  "worker_completions": {
+    "8da04debb6a4": 3227,
+    "ba51389d5860": 3195,
+    "7aeaaaf59d7c": 3189
+  },
+  "latency_seconds": {
+    "p50": 1.261441141000006,
+    "p95": 1.2908773979999921,
+    "p99": 1.344436093000013
+  },
+  "queue_wait_seconds": {
+    "p50": 0.000818,
+    "p95": 0.001484,
+    "p99": 0.019459
+  },
+  "service_seconds": {
+    "p50": 1.09124,
+    "p95": 1.139835,
+    "p99": 1.142947
+  },
+  "per_minute_statuses": {
+    "0": {
+      "completed": 9611
+    }
+  },
+  "poll_interval_seconds": 0.25,
+  "samples_file": "soak.samples.jsonl.gz",
+  "target_conditions": {
+    "at_least_15_minutes": false,
+    "at_least_200_clients": true,
+    "multiple_workers_observed": true,
+    "all_jobs_completed": true,
+    "at_least_200_simultaneous_mock_executions": true
+  },
+  "limitations": "Closed-loop client concurrency; not proof of 200 simultaneous provider executions. Inspect Prometheus inflight data. Polling adds latency. No inference retries in the generator.",
+  "provider_execution": {
+    "before": {
+      "active": 0,
+      "peak_active": 0,
+      "calls": 0,
+      "since_unix": 1790781094.6773734
+    },
+    "after": {
+      "active": 0,
+      "peak_active": 200,
+      "calls": 9611,
+      "since_unix": 1790781094.6773734
+    },
+    "scope": "mock execution from artificial delay through response write; synchronized in one provider process"
+  }
+}
