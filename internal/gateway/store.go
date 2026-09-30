@@ -83,8 +83,10 @@ type DatabaseStore struct {
 	Redis *redis.Client
 	// DisablePolicyCache supplies a direct PostgreSQL baseline without changing consistency.
 	DisablePolicyCache bool
-	policyMu           sync.RWMutex
-	decodedPolicies    map[string]Policy
+	// Benchmark control for the previous Redis-only document-cache design.
+	DisableDecodedPolicyCache bool
+	policyMu                  sync.RWMutex
+	decodedPolicies           map[string]Policy
 }
 
 // Returned policies must not alias shared maps. The cache holds at most 1,024
@@ -111,6 +113,9 @@ func (s *DatabaseStore) decodedPolicy(tenant string, version int64) (Policy, boo
 }
 
 func (s *DatabaseStore) rememberPolicy(tenant string, p Policy) {
+	if s.DisableDecodedPolicyCache {
+		return
+	}
 	s.policyMu.Lock()
 	defer s.policyMu.Unlock()
 	if s.decodedPolicies == nil || len(s.decodedPolicies) >= 1024 {
@@ -157,8 +162,10 @@ func (s *DatabaseStore) Policy(ctx context.Context, tenant string) (Policy, erro
 		return Policy{}, e
 	}
 	key := fmt.Sprintf("policy:%s:%d", tenant, version)
-	if p, ok := s.decodedPolicy(tenant, version); ok && p.Validate() == nil {
-		return p, nil
+	if !s.DisableDecodedPolicyCache {
+		if p, ok := s.decodedPolicy(tenant, version); ok && p.Validate() == nil {
+			return p, nil
+		}
 	}
 	if b, e := s.Redis.Get(ctx, key).Result(); e == nil {
 		var p Policy

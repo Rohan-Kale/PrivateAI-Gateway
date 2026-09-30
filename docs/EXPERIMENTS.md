@@ -47,9 +47,12 @@ Two hundred outstanding clients are not automatically two hundred simultaneously
 `cmd/policybench` bypasses the provider entirely. It creates one temporary tenant, runs eight paired rounds with randomized mode order, warms each mode for 200 lookups, and measures 2,000 lookups per mode per round. It checks every returned policy's version and default action.
 
 - Baseline: one authoritative PostgreSQL version+document read, followed by validation.
-- Treatment: the existing authoritative PostgreSQL version check plus a warm Redis hit and validation.
+- Current treatment: the authoritative PostgreSQL version check plus a warm decoded process-cache hit and validation, with Redis backing cold process reads.
+- Legacy cached mode: the authoritative PostgreSQL version check plus a warm Redis hit, JSON decoding, and validation.
 
 Both retain the same policy-version consistency guarantee. This is deliberately not a weakened cache that skips version checks. Median improvement is `(baseline - treatment) / baseline * 100`; negative values mean the cache is slower. Reports include every duration, paired effects, runtime, commit, and sample sizes. The test removes only its own tenant and cache key.
+
+The current v3 benchmark randomizes all three modes within each round and reports two distinct comparisons: decoded versus direct PostgreSQL, and decoded versus the previous Redis path. `target_met` still refers to the original direct-PostgreSQL comparison. A gain against the legacy path must never be relabeled as a gain against direct PostgreSQL. Historical v1/v2 reports preserve their original two-mode protocols.
 
 ## 4. Human issue triage
 
