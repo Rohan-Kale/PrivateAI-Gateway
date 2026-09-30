@@ -54,11 +54,25 @@ def secrets():
         command(COMPOSE+["up","-d","--no-deps","--wait","gateway"]);ready()
 
 
-def faults(repeats=3):
-    records=[]
+def restore_service(service):
+    # Compose rejects --scale for a service not selected by this invocation.
+    args=["up","--no-deps","-d","--wait"]
+    if service=="worker":args += ["--scale","worker=3"]
+    command(COMPOSE+args+[service],stdout=subprocess.DEVNULL)
+    ready()
+
+
+def faults(repeats=3,resume=False):
+    report_path=OUT/"faults.json"
+    previous=json.loads(report_path.read_text()) if resume and report_path.exists() else {}
+    records=previous.get("records",[])
+    metadata={**provenance(),"experiment":"fault-to-local-webhook-v1","receiver":"local Alertmanager webhook; not email/SMS delivery"}
+    if previous:metadata["resumed_from_commit"]=previous.get("commit")
+    def save():write_report(report_path,{**metadata,"records":records})
     # Stop commands target only this isolated project, with restoration in finally.
     for service in ("worker","detector","postgres","redis"):
         for trial in range(repeats):
+            if any(r["service"]==service and r["trial"]==trial and r.get("restoration_complete",True) for r in records):continue
             ready();time.sleep(20)  # healthy scrape/evaluation baseline after prior restoration
             injection=utc();mono=time.monotonic();receipt=None
             try:
@@ -79,15 +93,17 @@ def faults(repeats=3):
                     if receipt:break
                     time.sleep(1)
                 latency=None if receipt is None else (datetime.fromisoformat(receipt["received_at"])-datetime.fromisoformat(injection)).total_seconds()
-                records.append({"service":service,"trial":trial,"injection_requested_at":injection,"stop_completed_at":stopped,"receipt":receipt,"detection_seconds":latency,"within_120_seconds":latency is not None and latency<=120})
+                records.append({"service":service,"trial":trial,"injection_requested_at":injection,"stop_completed_at":stopped,"receipt":receipt,"detection_seconds":latency,"within_120_seconds":latency is not None and latency<=120,"restoration_complete":False})
+                save()
             finally:
-                command(COMPOSE+["up","-d","--wait","--scale","worker=3",service],stdout=subprocess.DEVNULL);ready()
-            write_report(OUT/"faults.json",{**provenance(),"experiment":"fault-to-local-webhook-v1","receiver":"local Alertmanager webhook; not email/SMS delivery","records":records})
+                restore_service(service)
+            records[-1]["restoration_complete"]=True
+            save()
     return records
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument("phase",choices=["prepare","secrets","policy","soak","faults","all","stop"]);p.add_argument("--seconds",type=int,default=900);p.add_argument("--fault-repeats",type=int,default=3);a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument("phase",choices=["prepare","secrets","policy","soak","faults","all","stop"]);p.add_argument("--seconds",type=int,default=900);p.add_argument("--fault-repeats",type=int,default=3);p.add_argument("--resume-faults",action="store_true");a=p.parse_args()
     os.chdir(ROOT);OUT.mkdir(parents=True,exist_ok=True)
     os.environ["EVIDENCE_COMMIT"]=subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip()
     if a.phase=="stop":command(COMPOSE+["stop"]);return
@@ -103,7 +119,7 @@ def main():
         stop=threading.Event();sampler=threading.Thread(target=sample,args=(stop,));sampler.start()
         try:command(COMPOSE+["run","--rm","loadgen","python","-m","experiments.soak","--seconds",str(a.seconds)])
         finally:stop.set();sampler.join(timeout=30)
-    if a.phase in ("faults","all"):faults(a.fault_repeats)
+    if a.phase in ("faults","all"):faults(a.fault_repeats,a.resume_faults)
 
 
 if __name__=="__main__":main()
