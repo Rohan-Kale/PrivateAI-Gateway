@@ -2,6 +2,19 @@
 
 Start with [LEARNING_GUIDE.md](LEARNING_GUIDE.md) for the concepts. This reference explains the files you will see in the repository, what uses them, and which ones are historical results. Paths in the first column are relative to the repository root.
 
+The follow-up implementation and its measurement scope are documented in `docs/IMPROVEMENT_ROUND_1.md`. Added files:
+
+| File | Purpose |
+|---|---|
+| `detector/representations.py` | Bounded URL/base64 inspection and JWT structure recognition. |
+| `internal/gateway/input.go` | Projects detected cross-message secrets onto the original message spans. |
+| `internal/gateway/input_test.go` | Tests all policies on fragments, restoration, and invalid detector offsets. |
+| `internal/gateway/policy_cache_test.go` | Checks decoded policy copies, version/tenant isolation, concurrent access, and cache capacity. |
+| `mock/activity.py` | Synchronized active/peak execution counters for the mock provider. |
+| `tests/test_detector_representations.py` | Tests encoded secrets, original UTF-8 offsets, JWT structure, and benign exceptions. |
+| `experiments/validation_corpus.py` | Builds distinct synthetic validation templates without detector imports. |
+| `experiments/fixtures/validation-v2/manifest.json` | Frozen canonical validation fingerprint. Raw generated values stay ignored. |
+
 ## Root and build configuration
 
 | File | Purpose |

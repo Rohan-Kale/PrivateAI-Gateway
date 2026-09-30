@@ -35,7 +35,13 @@ func TestPostgresPolicyCASAndCacheVersion(t *testing.T) {
 		t.Fatal(err)
 	}
 	p.Default = Block
-	updated, err := s.PutPolicy(ctx, tenant, p)
+	// A different process/store updates policy while this store has a warm L1.
+	other, err := NewDatabaseStore(ctx, dsn, url)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer other.Close()
+	updated, err := other.PutPolicy(ctx, tenant, p)
 	if err != nil || updated.Version != 2 {
 		t.Fatal(updated, err)
 	}
@@ -45,5 +51,12 @@ func TestPostgresPolicyCASAndCacheVersion(t *testing.T) {
 	current, err := s.Policy(ctx, tenant)
 	if err != nil || current.Default != Block || current.Version != 2 {
 		t.Fatal("cache returned revoked policy", current, err)
+	}
+	_, err = s.DB.Exec(ctx, "DELETE FROM policies WHERE tenant=$1", tenant)
+	if err != nil {
+		t.Fatal(err)
+	}
+	if _, err = s.Policy(ctx, tenant); !errors.Is(err, ErrNotFound) {
+		t.Fatal("deleted policy served from warm cache", err)
 	}
 }

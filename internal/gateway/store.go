@@ -83,6 +83,40 @@ type DatabaseStore struct {
 	Redis *redis.Client
 	// DisablePolicyCache supplies a direct PostgreSQL baseline without changing consistency.
 	DisablePolicyCache bool
+	policyMu           sync.RWMutex
+	decodedPolicies    map[string]Policy
+}
+
+// Returned policies must not alias shared maps. The cache holds at most 1,024
+// tenants and is used only after an authoritative database version read.
+func copyDecodedPolicy(p Policy) Policy {
+	if p.Rules != nil {
+		rules := make(map[string]Action, len(p.Rules))
+		for kind, action := range p.Rules {
+			rules[kind] = action
+		}
+		p.Rules = rules
+	}
+	return p
+}
+
+func (s *DatabaseStore) decodedPolicy(tenant string, version int64) (Policy, bool) {
+	s.policyMu.RLock()
+	defer s.policyMu.RUnlock()
+	p, ok := s.decodedPolicies[tenant]
+	if !ok || p.Version != version {
+		return Policy{}, false
+	}
+	return copyDecodedPolicy(p), true
+}
+
+func (s *DatabaseStore) rememberPolicy(tenant string, p Policy) {
+	s.policyMu.Lock()
+	defer s.policyMu.Unlock()
+	if s.decodedPolicies == nil || len(s.decodedPolicies) >= 1024 {
+		s.decodedPolicies = make(map[string]Policy)
+	}
+	s.decodedPolicies[tenant] = copyDecodedPolicy(p)
 }
 
 func NewDatabaseStore(ctx context.Context, dsn, redisURL string) (*DatabaseStore, error) {
@@ -123,9 +157,13 @@ func (s *DatabaseStore) Policy(ctx context.Context, tenant string) (Policy, erro
 		return Policy{}, e
 	}
 	key := fmt.Sprintf("policy:%s:%d", tenant, version)
+	if p, ok := s.decodedPolicy(tenant, version); ok && p.Validate() == nil {
+		return p, nil
+	}
 	if b, e := s.Redis.Get(ctx, key).Result(); e == nil {
 		var p Policy
 		if json.Unmarshal([]byte(b), &p) == nil && p.Validate() == nil && p.Version == version {
+			s.rememberPolicy(tenant, p)
 			return p, nil
 		}
 	}
@@ -135,6 +173,7 @@ func (s *DatabaseStore) Policy(ctx context.Context, tenant string) (Policy, erro
 	}
 	b, _ := json.Marshal(p)
 	_ = s.Redis.Set(ctx, fmt.Sprintf("policy:%s:%d", tenant, p.Version), b, time.Minute*5).Err()
+	s.rememberPolicy(tenant, p)
 	return p, nil
 }
 func (s *DatabaseStore) loadPolicy(ctx context.Context, tenant string) (Policy, error) {

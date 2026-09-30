@@ -33,4 +33,6 @@ Rebuild the isolated stack, run the exposure suite, then the load and fault expe
 
 ## Remaining decisions and studies
 
-Policy caching must retain the authoritative version check unless an explicit new freshness contract is selected. Human triage and manual provisioning timing still require actual participants/fresh hosts. No speedup or duration is assumed for those studies.
+Policy caching now uses a decoded process cache after the authoritative version check, with Redis backing cold process reads. This preserves existing freshness semantics. Cached maps are copied, versions/tenants must match, and capacity is bounded at 1,024 tenants per process. The paired benchmark labels this new treatment explicitly; its speedup must still be measured. Tests check isolation, capacity, external updates, and deletion of a previously cached policy.
+
+Human triage and manual provisioning timing still require actual participants/fresh hosts. No speedup or duration is assumed for those studies.

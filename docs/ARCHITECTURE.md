@@ -8,7 +8,7 @@ Each message is inspected by the detector. Detections are sorted, overlap-merged
 
 The provider receives only transformed messages. The complete output is inspected with the same policy, with output-side `tokenize` treated as redaction: newly generated PII is not eligible for restoration. Finally, only tokens from this tenant/request's input vault may be restored when its policy permits it. There is no public detokenization endpoint.
 
-The gateway does not join separate input messages for detection. Obfuscation and secrets intentionally split across messages can evade the lexical detector. Detection is a documented baseline, not a comprehensive data-loss-prevention guarantee.
+The gateway inspects individual messages and additionally concatenates their content for cross-boundary SECRET detection. Cross-boundary spans are projected onto the original messages. This protects recognized fragments but cannot infer the meaning of arbitrary opaque strings. The detector inspects at most two URL/base64 layers with bounded token length; more complex obfuscation can still evade it. Detection is not a comprehensive data-loss-prevention guarantee.
 
 ## Policy consistency
 
@@ -17,6 +17,8 @@ PostgreSQL stores one JSONB document and increasing version per tenant. A new po
 Every inference reads the current version from PostgreSQL before looking in Redis under `policy:<tenant>:<version>`. Redis avoids repeatedly fetching/parsing the JSON document, but **does not eliminate the database round trip**. Old cache entries expire after five minutes and cannot override a newer version read. A request already admitted uses its policy snapshot until completion; policy changes do not cancel in-flight requests. Workers read policy at execution time, so queued requests do not carry stale policy snapshots.
 
 See the [pgx connection-pool API](https://pkg.go.dev/github.com/jackc/pgx/v5/pgxpool) for the underlying pooled database client.
+
+The first improvement round adds a bounded decoded process cache before Redis. After reading the authoritative version, a matching local document is copied and validated; otherwise Redis and then PostgreSQL provide the document. At most 1,024 tenants are retained per process; map copies prevent callers from mutating shared policies. This removes a Redis operation and JSON decoding on warm local hits without skipping the database check. External updates and deletions still take effect through the next authoritative read. The original slower-Redis measurement describes the earlier implementation.
 
 ## Reversible tokens and cache
 

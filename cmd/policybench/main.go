@@ -84,7 +84,7 @@ func run() error {
 		}
 		effects = append(effects, 100*(medians[false]-medians[true])/medians[false])
 	}
-	report := map[string]any{"schema_version": 1, "experiment": "policy-cache-paired-v1", "timestamp_utc": time.Now().UTC(), "commit": os.Getenv("EVIDENCE_COMMIT"), "go": runtime.Version(), "cpus": runtime.NumCPU(), "seed": *seed, "rounds": *rounds, "samples_per_mode": *samples, "warmups_per_mode": 200, "baseline": "one PostgreSQL version+document read; validated JSON", "treatment": "PostgreSQL version check plus warm Redis hit; validated JSON", "provider": "not involved", "records": records, "paired_improvement_percent": effects, "median_improvement_percent": median(effects), "target_percent": 35, "target_met": median(effects) >= 35}
+	report := map[string]any{"schema_version": 1, "experiment": "policy-cache-paired-v2", "timestamp_utc": time.Now().UTC(), "commit": os.Getenv("EVIDENCE_COMMIT"), "go": runtime.Version(), "cpus": runtime.NumCPU(), "seed": *seed, "rounds": *rounds, "samples_per_mode": *samples, "warmups_per_mode": 200, "baseline": "one PostgreSQL version+document read; validated JSON", "treatment": "PostgreSQL version check plus warm decoded process cache; Redis backs cold process reads; validated policy", "provider": "not involved", "records": records, "paired_improvement_percent": effects, "median_improvement_percent": median(effects), "target_percent": 35, "target_met": median(effects) >= 35}
 	b, _ := json.MarshalIndent(report, "", "  ")
 	return os.WriteFile(*output, append(b, '\n'), 0644)
 }
