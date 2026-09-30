@@ -1,0 +1,67 @@
+# Always run together with ../compose.yaml under project name privateai-evidence.
+services:
+  redis:
+    command: [sh, -c, 'exec redis-server --appendonly yes --requirepass "$$REDIS_PASSWORD" --maxmemory 1gb --maxmemory-policy noeviction']
+  gateway:
+    ports: !override [127.0.0.1:18080:8080]
+    environment:
+      MAX_CONCURRENCY: '256'
+      PROVIDER_URL: http://mock:8002
+      PROVIDER_KEY: ''
+  worker:
+    environment:
+      MAX_CONCURRENCY: '80'
+      PROVIDER_URL: http://mock:8002
+      PROVIDER_KEY: ''
+  mock:
+    environment:
+      MOCK_DELAY_MS: '1000'
+  prometheus:
+    ports: !override [127.0.0.1:19090:9090]
+    volumes:
+      - ./experiments/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./experiments/alerts.yml:/etc/prometheus/experiment-alerts.yml:ro
+    depends_on: [gateway, worker, probe, alertmanager]
+  recorder:
+    image: privateai-python:local
+    command: [python, -m, experiments.recorder]
+    environment:
+      RECORDER_KEY: ${DETECTOR_KEY:?run bootstrap}
+    ports: [127.0.0.1:18003:8003]
+  receiver:
+    image: privateai-python:local
+    command: [python, -m, experiments.receiver]
+    user: '0:0'
+    volumes: [./work/evidence:/results]
+    ports: [127.0.0.1:18010:8010]
+  probe:
+    image: privateai-python:local
+    command: [python, -m, experiments.probe]
+  alertmanager:
+    image: prom/alertmanager:v0.28.1
+    volumes: [./experiments/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro]
+    command: [--config.file=/etc/alertmanager/alertmanager.yml, --storage.path=/alertmanager]
+  loadgen:
+    profiles: [experiments]
+    image: privateai-python:local
+    user: '0:0'
+    command: [python, -m, experiments.soak]
+    environment:
+      API_KEYS: ${API_KEYS:?run bootstrap}
+      ADMIN_KEY: ${ADMIN_KEY:?run bootstrap}
+      RECORDER_KEY: ${DETECTOR_KEY:?run bootstrap}
+      STORE_MODE: database
+      MOCK_DELAY_MS: '1000'
+      EVIDENCE_COMMIT: ${EVIDENCE_COMMIT:-unknown}
+    volumes: [./work/evidence:/results]
+  policybench:
+    profiles: [experiments]
+    build:
+      context: .
+      target: integration-test
+    entrypoint: [go, run, ./cmd/policybench]
+    environment:
+      DATABASE_URL: postgres://privateai:${POSTGRES_PASSWORD:?run bootstrap}@postgres:5432/privateai?sslmode=disable
+      REDIS_URL: redis://:${REDIS_PASSWORD:?run bootstrap}@redis:6379/0
+      EVIDENCE_COMMIT: ${EVIDENCE_COMMIT:-unknown}
+    volumes: [./work/evidence:/results]

@@ -15,8 +15,9 @@ const groupName = "inference-workers"
 const jobTTL = 24 * time.Hour
 
 type Broker struct {
-	Redis *redis.Client
-	Vault *Vault
+	Redis    *redis.Client
+	Vault    *Vault
+	WorkerID string
 }
 
 func (b *Broker) Submit(ctx context.Context, tenant string, r Request) (string, error) {
@@ -62,6 +63,11 @@ func (b *Broker) Result(ctx context.Context, tenant, id string) (JobResult, erro
 	return r, e
 }
 func (b *Broker) finish(ctx context.Context, msg redis.XMessage, j Job, r JobResult) error {
+	if r.FinishedAt.IsZero() {
+		r.Worker = b.WorkerID
+		r.EnqueuedAt = j.Created
+		r.FinishedAt = time.Now().UTC()
+	}
 	key := "job:" + j.Tenant + ":" + j.ID
 	raw, _ := json.Marshal(r)
 	sealed, e := b.Vault.Seal(key, string(raw))
@@ -94,9 +100,13 @@ func (b *Broker) process(ctx context.Context, e *Engine, msg redis.XMessage) {
 		return
 	}
 	_ = b.Redis.Expire(ctx, "attempt:"+j.ID, jobTTL).Err()
+	if attempt == 1 {
+		e.Metrics.QueueWait.Observe(time.Since(j.Created).Seconds())
+	}
 	runCtx, cancel := context.WithTimeout(ctx, 55*time.Second)
 	defer cancel()
 	var result Result
+	started := time.Now().UTC()
 	if time.Since(j.Created) > jobTTL {
 		err = errors.New("job expired")
 	} else {
@@ -110,12 +120,12 @@ func (b *Broker) process(ctx context.Context, e *Engine, msg redis.XMessage) {
 		if errors.Is(err, ErrBlocked) {
 			reason = "policy blocked content"
 		}
-		if b.finish(ctx, msg, j, JobResult{Status: "failed", Error: reason}) == nil {
+		if b.finish(ctx, msg, j, JobResult{Status: "failed", Error: reason, StartedAt: started}) == nil {
 			e.Metrics.Failed.Add(1)
 		}
 		return
 	}
-	if b.finish(ctx, msg, j, JobResult{Status: "completed", Result: &result}) == nil {
+	if b.finish(ctx, msg, j, JobResult{Status: "completed", Result: &result, StartedAt: started}) == nil {
 		e.Metrics.Completed.Add(1)
 	}
 }

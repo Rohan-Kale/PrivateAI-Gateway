@@ -1,0 +1,13 @@
+groups:
+  - name: experiment-faults
+    rules:
+      - alert: PrivateAIDependencyUnavailable
+        expr: privateai_dependency_ready == 0
+        for: 10s
+        labels: {severity: critical}
+        annotations: {summary: 'Readiness probe failed during controlled fault test'}
+      - alert: PrivateAIWorkerUnavailable
+        expr: absent(up{job="privateai-worker"}) or up{job="privateai-worker"} == 0
+        for: 10s
+        labels: {severity: critical}
+        annotations: {summary: 'Worker scrape target unavailable'}

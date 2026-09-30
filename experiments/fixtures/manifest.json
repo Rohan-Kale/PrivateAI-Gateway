@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "name": "synthetic-exposure-v1",
+  "seed": 73129,
+  "per_family": 50,
+  "synthetic_only": true,
+  "held_out": false,
+  "cases": 900,
+  "canonical_sha256": "d7b4422acbfc4721a311c11cf1a98d87beff240c247bb5350247ec92115a13f9"
+}

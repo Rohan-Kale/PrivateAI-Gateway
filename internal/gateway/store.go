@@ -81,6 +81,8 @@ func (m *MemoryStore) Close()                     {}
 type DatabaseStore struct {
 	DB    *pgxpool.Pool
 	Redis *redis.Client
+	// DisablePolicyCache supplies a direct PostgreSQL baseline without changing consistency.
+	DisablePolicyCache bool
 }
 
 func NewDatabaseStore(ctx context.Context, dsn, redisURL string) (*DatabaseStore, error) {
@@ -108,6 +110,9 @@ func (s *DatabaseStore) Ping(ctx context.Context) error {
 }
 func (s *DatabaseStore) Close() { s.DB.Close(); _ = s.Redis.Close() }
 func (s *DatabaseStore) Policy(ctx context.Context, tenant string) (Policy, error) {
+	if s.DisablePolicyCache {
+		return s.loadPolicy(ctx, tenant)
+	}
 	// Verify the authoritative version on every request: cache TTL never delays revocation.
 	var version int64
 	e := s.DB.QueryRow(ctx, "SELECT version FROM policies WHERE tenant=$1", tenant).Scan(&version)
@@ -124,9 +129,21 @@ func (s *DatabaseStore) Policy(ctx context.Context, tenant string) (Policy, erro
 			return p, nil
 		}
 	}
+	p, e := s.loadPolicy(ctx, tenant)
+	if e != nil {
+		return p, e
+	}
+	b, _ := json.Marshal(p)
+	_ = s.Redis.Set(ctx, fmt.Sprintf("policy:%s:%d", tenant, p.Version), b, time.Minute*5).Err()
+	return p, nil
+}
+func (s *DatabaseStore) loadPolicy(ctx context.Context, tenant string) (Policy, error) {
 	var raw []byte
 	var p Policy
-	e = s.DB.QueryRow(ctx, "SELECT version, document FROM policies WHERE tenant=$1", tenant).Scan(&p.Version, &raw)
+	e := s.DB.QueryRow(ctx, "SELECT version, document FROM policies WHERE tenant=$1", tenant).Scan(&p.Version, &raw)
+	if e == pgx.ErrNoRows {
+		return p, ErrNotFound
+	}
 	if e != nil {
 		return p, e
 	}
@@ -138,8 +155,6 @@ func (s *DatabaseStore) Policy(ctx context.Context, tenant string) (Policy, erro
 	if e = p.Validate(); e != nil {
 		return p, e
 	}
-	b, _ := json.Marshal(p)
-	_ = s.Redis.Set(ctx, fmt.Sprintf("policy:%s:%d", tenant, v), b, time.Minute*5).Err()
 	return p, nil
 }
 func (s *DatabaseStore) PutPolicy(ctx context.Context, t string, p Policy) (Policy, error) {

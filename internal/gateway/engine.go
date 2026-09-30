@@ -13,15 +13,17 @@ import (
 )
 
 type Metrics struct {
-	Requests  atomic.Int64
-	Errors    atomic.Int64
-	Blocked   atomic.Int64
-	CacheHits atomic.Int64
-	Active    atomic.Int64
-	Jobs      atomic.Int64
-	Completed atomic.Int64
-	Failed    atomic.Int64
-	Nanos     atomic.Int64
+	Requests     atomic.Int64
+	Errors       atomic.Int64
+	Blocked      atomic.Int64
+	CacheHits    atomic.Int64
+	Active       atomic.Int64
+	Jobs         atomic.Int64
+	Completed    atomic.Int64
+	Failed       atomic.Int64
+	Nanos        atomic.Int64
+	QueueWait    Histogram
+	PolicyLookup Histogram
 }
 type Engine struct {
 	Store    Store
@@ -94,7 +96,9 @@ func (e *Engine) Run(ctx context.Context, tenant string, req Request) (result Re
 	}
 	e.Metrics.Active.Add(1)
 	defer e.Metrics.Active.Add(-1)
+	policyStarted := time.Now()
 	p, err := e.Store.Policy(ctx, tenant)
+	e.Metrics.PolicyLookup.Observe(time.Since(policyStarted).Seconds())
 	if err != nil {
 		return result, err
 	}

@@ -119,7 +119,11 @@ type Job struct {
 	Created time.Time `json:"created"`
 }
 type JobResult struct {
-	Status string  `json:"status"`
-	Result *Result `json:"result,omitempty"`
-	Error  string  `json:"error,omitempty"`
+	Status     string    `json:"status"`
+	Result     *Result   `json:"result,omitempty"`
+	Error      string    `json:"error,omitempty"`
+	Worker     string    `json:"worker,omitempty"`
+	EnqueuedAt time.Time `json:"enqueued_at,omitempty"`
+	StartedAt  time.Time `json:"started_at,omitempty"`
+	FinishedAt time.Time `json:"finished_at,omitempty"`
 }

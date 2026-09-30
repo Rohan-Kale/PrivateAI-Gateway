@@ -1,0 +1,5 @@
+services:
+  gateway:
+    environment:
+      PROVIDER_URL: http://recorder:8003
+      PROVIDER_KEY: ${DETECTOR_KEY:?run bootstrap}

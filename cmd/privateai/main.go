@@ -86,7 +86,8 @@ func run() error {
 			return errors.New("database/Redis connection failed")
 		}
 		store = s
-		broker = &gateway.Broker{Redis: s.Redis, Vault: vault}
+		hostname, _ := os.Hostname()
+		broker = &gateway.Broker{Redis: s.Redis, Vault: vault, WorkerID: hostname}
 	}
 	defer store.Close()
 	client := gateway.NewHTTPClient()

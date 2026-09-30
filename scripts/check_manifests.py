@@ -2,6 +2,8 @@
 from pathlib import Path
 import yaml
 
+yaml.SafeLoader.add_constructor("!override", lambda loader,node: loader.construct_sequence(node))
+
 root = Path(__file__).resolve().parents[1]
 paths = sorted(p for p in root.rglob("*.yml") if not any(x in p.parts for x in (".cache", "work", ".git")))
 paths += sorted(p for p in root.rglob("*.yaml") if not any(x in p.parts for x in (".cache", "work", ".git")))

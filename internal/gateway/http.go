@@ -75,6 +75,16 @@ func (a *API) Handler() http.Handler {
 	mux.HandleFunc("GET /metrics", func(w http.ResponseWriter, r *http.Request) {
 		m := a.Engine.Metrics
 		w.Header().Set("Content-Type", "text/plain; version=0.0.4")
+		m.QueueWait.Write(w, "privateai_queue_wait_seconds")
+		m.PolicyLookup.Write(w, "privateai_policy_lookup_seconds")
+		if a.Broker != nil {
+			ctx, cancel := context.WithTimeout(r.Context(), time.Second)
+			n, err := a.Broker.Redis.XLen(ctx, streamName).Result()
+			cancel()
+			if err == nil {
+				fmt.Fprintf(w, "# TYPE privateai_queue_depth gauge\nprivateai_queue_depth %d\n", n)
+			}
+		}
 		fmt.Fprintf(w, "# TYPE privateai_requests_total counter\nprivateai_requests_total %d\n# TYPE privateai_errors_total counter\nprivateai_errors_total %d\n# TYPE privateai_blocked_total counter\nprivateai_blocked_total %d\n# TYPE privateai_cache_hits_total counter\nprivateai_cache_hits_total %d\n# TYPE privateai_inflight gauge\nprivateai_inflight %d\n# TYPE privateai_request_duration_seconds summary\nprivateai_request_duration_seconds_sum %f\nprivateai_request_duration_seconds_count %d\n# TYPE privateai_jobs_enqueued_total counter\nprivateai_jobs_enqueued_total %d\n# TYPE privateai_jobs_completed_total counter\nprivateai_jobs_completed_total %d\n# TYPE privateai_jobs_failed_total counter\nprivateai_jobs_failed_total %d\n", m.Requests.Load(), m.Errors.Load(), m.Blocked.Load(), m.CacheHits.Load(), m.Active.Load(), float64(m.Nanos.Load())/1e9, m.Requests.Load(), m.Jobs.Load(), m.Completed.Load(), m.Failed.Load())
 	})
 	mux.HandleFunc("PUT /admin/policies/{tenant}", func(w http.ResponseWriter, r *http.Request) {

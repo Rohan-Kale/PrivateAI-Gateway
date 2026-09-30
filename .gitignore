@@ -12,3 +12,4 @@ coverage.out
 results/local-*
 ansible/inventory.ini
 ansible/secrets.yml
+experiments/fixtures/secrets-v1.json
