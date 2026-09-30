@@ -1,0 +1,304 @@
+{
+  "commit": "5ba8931f99975f5533516935bbd66165edca60a3",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T05:25:46.394629+00:00",
+  "python": "3.14.4",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "logical_cpus": 16,
+  "experiment": "fault-to-local-webhook-v1",
+  "receiver": "local Alertmanager webhook; not email/SMS delivery",
+  "resumed_from_commit": "59bf5f2ffc18ab1da193d6d914984fc484712bb7",
+  "records": [
+    {
+      "service": "worker",
+      "trial": 0,
+      "injection_requested_at": "2026-09-30T05:21:24.066741+00:00",
+      "stop_completed_at": "2026-09-30T05:21:25.508516+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:21:39.841461+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "worker",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:21:39.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 15.77472,
+      "within_120_seconds": true
+    },
+    {
+      "service": "worker",
+      "trial": 1,
+      "injection_requested_at": "2026-09-30T05:22:07.794132+00:00",
+      "stop_completed_at": "2026-09-30T05:22:08.771994+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:22:19.838287+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIWorkerUnavailable",
+              "instance": "172.18.0.13:8080",
+              "job": "privateai-worker",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:22:19.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 12.044155,
+      "within_120_seconds": true
+    },
+    {
+      "service": "worker",
+      "trial": 2,
+      "injection_requested_at": "2026-09-30T05:22:48.062211+00:00",
+      "stop_completed_at": "2026-09-30T05:22:49.013040+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:22:59.841651+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIWorkerUnavailable",
+              "instance": "172.18.0.13:8080",
+              "job": "privateai-worker",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:22:59.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 11.77944,
+      "within_120_seconds": true
+    },
+    {
+      "service": "detector",
+      "trial": 0,
+      "injection_requested_at": "2026-09-30T05:26:06.412581+00:00",
+      "stop_completed_at": "2026-09-30T05:26:08.753412+00:00",
+      "receipt": null,
+      "detection_seconds": null,
+      "within_120_seconds": false,
+      "restoration_complete": true
+    },
+    {
+      "service": "detector",
+      "trial": 1,
+      "injection_requested_at": "2026-09-30T05:29:05.008701+00:00",
+      "stop_completed_at": "2026-09-30T05:29:07.533900+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:29:24.843884+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "detector",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:29:24.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 19.835183,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "detector",
+      "trial": 2,
+      "injection_requested_at": "2026-09-30T05:29:51.512839+00:00",
+      "stop_completed_at": "2026-09-30T05:29:53.851455+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:30:09.844389+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "detector",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:30:09.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.33155,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "postgres",
+      "trial": 0,
+      "injection_requested_at": "2026-09-30T05:30:35.860897+00:00",
+      "stop_completed_at": "2026-09-30T05:30:36.246639+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:30:54.843911+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "gateway",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:30:54.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.983014,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "postgres",
+      "trial": 1,
+      "injection_requested_at": "2026-09-30T05:31:21.216973+00:00",
+      "stop_completed_at": "2026-09-30T05:31:21.600899+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:31:39.844045+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "gateway",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:31:39.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.627072,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "postgres",
+      "trial": 2,
+      "injection_requested_at": "2026-09-30T05:32:06.580788+00:00",
+      "stop_completed_at": "2026-09-30T05:32:06.993674+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:32:24.842624+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "gateway",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:32:24.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.261836,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "redis",
+      "trial": 0,
+      "injection_requested_at": "2026-09-30T05:32:50.992927+00:00",
+      "stop_completed_at": "2026-09-30T05:32:52.125643+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:33:09.843440+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "gateway",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:33:09.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.850513,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "redis",
+      "trial": 1,
+      "injection_requested_at": "2026-09-30T05:33:36.132816+00:00",
+      "stop_completed_at": "2026-09-30T05:33:37.353652+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:33:54.842761+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "gateway",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:33:54.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.709945,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    },
+    {
+      "service": "redis",
+      "trial": 2,
+      "injection_requested_at": "2026-09-30T05:34:21.384872+00:00",
+      "stop_completed_at": "2026-09-30T05:34:22.588039+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:34:39.843226+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "gateway",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:34:39.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 18.458354,
+      "within_120_seconds": true,
+      "restoration_complete": true
+    }
+  ]
+}

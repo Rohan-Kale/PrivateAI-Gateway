@@ -44,7 +44,7 @@ If the policy were EMAIL=redact, the provider would receive `[REDACTED_EMAIL]` a
 | Compose | Starts and connects the local collection of services, health checks, volumes, and replicas | It is not Kubernetes and does not prove cluster behavior. |
 | Kubernetes | Describes pods, replicas, services, storage, probes, disruption budgets, and gateway autoscaling | Rendering YAML is not proof of successful live deployment. |
 | Prometheus | Scrapes numeric measurements and evaluates alert rules | It does not itself prove notification delivery or manufacture percentile observations. |
-| Alertmanager | Groups/routs firing alerts to the configured local experiment webhook | A local receipt is not the same as a person receiving an email or SMS. |
+| Alertmanager | Groups/routes firing alerts to the configured local experiment webhook | A local receipt is not the same as a person receiving an email or SMS. |
 | Ansible | Applies repeatable host configuration and starts a worker service | A syntax check is not a provisioning-time benchmark. |
 | KVM/libvirt | Optional hardware-assisted Linux virtualization support on an explicitly selected host | Installing tools does not create a fresh VM or demonstrate nested virtualization performance. |
 | Git/GitHub | Version history, remote source hosting, CI runs, and reviewable checkpoints | Pushed code is not a continuously hosted API. |

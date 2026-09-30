@@ -1,0 +1,85 @@
+{
+  "commit": "59bf5f2ffc18ab1da193d6d914984fc484712bb7",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T05:23:07.269329+00:00",
+  "python": "3.14.4",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "logical_cpus": 16,
+  "experiment": "fault-to-local-webhook-v1",
+  "receiver": "local Alertmanager webhook; not email/SMS delivery",
+  "records": [
+    {
+      "service": "worker",
+      "trial": 0,
+      "injection_requested_at": "2026-09-30T05:21:24.066741+00:00",
+      "stop_completed_at": "2026-09-30T05:21:25.508516+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:21:39.841461+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIDependencyUnavailable",
+              "instance": "probe:8011",
+              "job": "dependency-probes",
+              "service": "worker",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:21:39.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 15.77472,
+      "within_120_seconds": true
+    },
+    {
+      "service": "worker",
+      "trial": 1,
+      "injection_requested_at": "2026-09-30T05:22:07.794132+00:00",
+      "stop_completed_at": "2026-09-30T05:22:08.771994+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:22:19.838287+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIWorkerUnavailable",
+              "instance": "172.18.0.13:8080",
+              "job": "privateai-worker",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:22:19.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 12.044155,
+      "within_120_seconds": true
+    },
+    {
+      "service": "worker",
+      "trial": 2,
+      "injection_requested_at": "2026-09-30T05:22:48.062211+00:00",
+      "stop_completed_at": "2026-09-30T05:22:49.013040+00:00",
+      "receipt": {
+        "received_at": "2026-09-30T05:22:59.841651+00:00",
+        "status": "firing",
+        "alerts": [
+          {
+            "status": "firing",
+            "labels": {
+              "alertname": "PrivateAIWorkerUnavailable",
+              "instance": "172.18.0.13:8080",
+              "job": "privateai-worker",
+              "severity": "critical"
+            },
+            "startsAt": "2026-09-30T05:22:59.835Z"
+          }
+        ]
+      },
+      "detection_seconds": 11.77944,
+      "within_120_seconds": true
+    }
+  ]
+}

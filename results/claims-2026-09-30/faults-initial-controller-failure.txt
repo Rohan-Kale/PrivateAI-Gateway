@@ -1,0 +1,151 @@
+ Container privateai-evidence-worker-1  Stopping
+ Container privateai-evidence-worker-3  Stopping
+ Container privateai-evidence-worker-2  Stopping
+ Container privateai-evidence-worker-3  Stopped
+ Container privateai-evidence-worker-1  Stopped
+ Container privateai-evidence-worker-2  Stopped
+ Container privateai-evidence-postgres-1  Running
+ Container privateai-evidence-detector-1  Running
+ Container privateai-evidence-redis-1  Running
+ Container privateai-evidence-mock-1  Running
+ Container privateai-evidence-gateway-1  Running
+ Container privateai-evidence-mock-1  Waiting
+ Container privateai-evidence-postgres-1  Waiting
+ Container privateai-evidence-redis-1  Waiting
+ Container privateai-evidence-detector-1  Waiting
+ Container privateai-evidence-mock-1  Healthy
+ Container privateai-evidence-postgres-1  Healthy
+ Container privateai-evidence-redis-1  Healthy
+ Container privateai-evidence-detector-1  Healthy
+ Container privateai-evidence-gateway-1  Waiting
+ Container privateai-evidence-gateway-1  Healthy
+ Container privateai-evidence-worker-3  Starting
+ Container privateai-evidence-worker-3  Started
+ Container privateai-evidence-worker-2  Starting
+ Container privateai-evidence-worker-2  Started
+ Container privateai-evidence-worker-1  Starting
+ Container privateai-evidence-worker-1  Started
+ Container privateai-evidence-detector-1  Waiting
+ Container privateai-evidence-redis-1  Waiting
+ Container privateai-evidence-mock-1  Waiting
+ Container privateai-evidence-postgres-1  Waiting
+ Container privateai-evidence-gateway-1  Waiting
+ Container privateai-evidence-worker-3  Waiting
+ Container privateai-evidence-worker-2  Waiting
+ Container privateai-evidence-worker-1  Waiting
+ Container privateai-evidence-mock-1  Healthy
+ Container privateai-evidence-postgres-1  Healthy
+ Container privateai-evidence-redis-1  Healthy
+ Container privateai-evidence-detector-1  Healthy
+ Container privateai-evidence-gateway-1  Healthy
+ Container privateai-evidence-worker-3  Healthy
+ Container privateai-evidence-worker-2  Healthy
+ Container privateai-evidence-worker-1  Healthy
+ Container privateai-evidence-worker-1  Stopping
+ Container privateai-evidence-worker-3  Stopping
+ Container privateai-evidence-worker-2  Stopping
+ Container privateai-evidence-worker-3  Stopped
+ Container privateai-evidence-worker-2  Stopped
+ Container privateai-evidence-worker-1  Stopped
+ Container privateai-evidence-detector-1  Running
+ Container privateai-evidence-postgres-1  Running
+ Container privateai-evidence-mock-1  Running
+ Container privateai-evidence-redis-1  Running
+ Container privateai-evidence-gateway-1  Running
+ Container privateai-evidence-redis-1  Waiting
+ Container privateai-evidence-detector-1  Waiting
+ Container privateai-evidence-mock-1  Waiting
+ Container privateai-evidence-postgres-1  Waiting
+ Container privateai-evidence-detector-1  Healthy
+ Container privateai-evidence-redis-1  Healthy
+ Container privateai-evidence-mock-1  Healthy
+ Container privateai-evidence-postgres-1  Healthy
+ Container privateai-evidence-gateway-1  Waiting
+ Container privateai-evidence-gateway-1  Healthy
+ Container privateai-evidence-worker-3  Starting
+ Container privateai-evidence-worker-3  Started
+ Container privateai-evidence-worker-2  Starting
+ Container privateai-evidence-worker-2  Started
+ Container privateai-evidence-worker-1  Starting
+ Container privateai-evidence-worker-1  Started
+ Container privateai-evidence-postgres-1  Waiting
+ Container privateai-evidence-gateway-1  Waiting
+ Container privateai-evidence-redis-1  Waiting
+ Container privateai-evidence-detector-1  Waiting
+ Container privateai-evidence-worker-3  Waiting
+ Container privateai-evidence-worker-2  Waiting
+ Container privateai-evidence-worker-1  Waiting
+ Container privateai-evidence-mock-1  Waiting
+ Container privateai-evidence-gateway-1  Healthy
+ Container privateai-evidence-postgres-1  Healthy
+ Container privateai-evidence-redis-1  Healthy
+ Container privateai-evidence-detector-1  Healthy
+ Container privateai-evidence-mock-1  Healthy
+ Container privateai-evidence-worker-3  Healthy
+ Container privateai-evidence-worker-2  Healthy
+ Container privateai-evidence-worker-1  Healthy
+ Container privateai-evidence-worker-1  Stopping
+ Container privateai-evidence-worker-3  Stopping
+ Container privateai-evidence-worker-2  Stopping
+ Container privateai-evidence-worker-3  Stopped
+ Container privateai-evidence-worker-2  Stopped
+ Container privateai-evidence-worker-1  Stopped
+ Container privateai-evidence-detector-1  Running
+ Container privateai-evidence-mock-1  Running
+ Container privateai-evidence-redis-1  Running
+ Container privateai-evidence-postgres-1  Running
+ Container privateai-evidence-gateway-1  Running
+ Container privateai-evidence-postgres-1  Waiting
+ Container privateai-evidence-redis-1  Waiting
+ Container privateai-evidence-detector-1  Waiting
+ Container privateai-evidence-mock-1  Waiting
+ Container privateai-evidence-detector-1  Healthy
+ Container privateai-evidence-redis-1  Healthy
+ Container privateai-evidence-postgres-1  Healthy
+ Container privateai-evidence-mock-1  Healthy
+ Container privateai-evidence-gateway-1  Waiting
+ Container privateai-evidence-gateway-1  Healthy
+ Container privateai-evidence-worker-3  Starting
+ Container privateai-evidence-worker-3  Started
+ Container privateai-evidence-worker-2  Starting
+ Container privateai-evidence-worker-2  Started
+ Container privateai-evidence-worker-1  Starting
+ Container privateai-evidence-worker-1  Started
+ Container privateai-evidence-redis-1  Waiting
+ Container privateai-evidence-gateway-1  Waiting
+ Container privateai-evidence-postgres-1  Waiting
+ Container privateai-evidence-mock-1  Waiting
+ Container privateai-evidence-worker-3  Waiting
+ Container privateai-evidence-worker-2  Waiting
+ Container privateai-evidence-worker-1  Waiting
+ Container privateai-evidence-detector-1  Waiting
+ Container privateai-evidence-gateway-1  Healthy
+ Container privateai-evidence-redis-1  Healthy
+ Container privateai-evidence-postgres-1  Healthy
+ Container privateai-evidence-mock-1  Healthy
+ Container privateai-evidence-detector-1  Healthy
+ Container privateai-evidence-worker-3  Healthy
+ Container privateai-evidence-worker-2  Healthy
+ Container privateai-evidence-worker-1  Healthy
+ Container privateai-evidence-detector-1  Stopping
+ Container privateai-evidence-detector-1  Stopped
+no such service: worker: disabled
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/mnt/c/Users/Rohan/Documents/Codex/2026-09-29/build-out-my-privateai-gateway-repository/outputs/PrivateAI-Gateway/experiments/run.py", line 109, in <module>
+    if __name__=="__main__":main()
+                            ~~~~^^
+  File "/mnt/c/Users/Rohan/Documents/Codex/2026-09-29/build-out-my-privateai-gateway-repository/outputs/PrivateAI-Gateway/experiments/run.py", line 106, in main
+    if a.phase in ("faults","all"):faults(a.fault_repeats)
+                                   ~~~~~~^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Rohan/Documents/Codex/2026-09-29/build-out-my-privateai-gateway-repository/outputs/PrivateAI-Gateway/experiments/run.py", line 84, in faults
+    command(COMPOSE+["up","-d","--wait","--scale","worker=3",service],stdout=subprocess.DEVNULL);ready()
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/c/Users/Rohan/Documents/Codex/2026-09-29/build-out-my-privateai-gateway-repository/outputs/PrivateAI-Gateway/experiments/run.py", line 18, in command
+    return subprocess.run(args,cwd=ROOT,check=True,**kwargs)
+           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.14/subprocess.py", line 578, in run
+    raise CalledProcessError(retcode, process.args,
+                             output=stdout, stderr=stderr)
+subprocess.CalledProcessError: Command '['docker', 'compose', '-p', 'privateai-evidence', '-f', 'compose.yaml', '-f', 'experiments/compose.yaml', 'up', '-d', '--wait', '--scale', 'worker=3', 'detector']' returned non-zero exit status 1.

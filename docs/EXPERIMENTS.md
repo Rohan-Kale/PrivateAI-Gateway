@@ -20,6 +20,8 @@ python3 -m experiments.run stop
 
 Outputs go to ignored `work/evidence/`. Publish reviewed reports in `results/` after checking provenance. Do not commit `.env`, raw credential fixtures, or human identifiers. The test recorder must only receive synthetic data. Images are built sequentially because multiple Compose services share image tags.
 
+After the soak finishes, `python3 -m experiments.summarize` checks compressed request counts against the reported outcomes and writes resource summaries with input fingerprints. Read [CLAIMS_REPORT.md](CLAIMS_REPORT.md) for the recorded September 30 results, including unsuccessful hypotheses.
+
 ## 1. Secret exposure
 
 `experiments/corpus.py` deterministically generates 900 cases: 600 secret cases in 12 families and 300 benign cases in six families. The corpus includes supported prefixes, private keys, credential assignments, generic unlabeled strings, JWTs, encodings, and values split across messages. The corpus does not import detector recognizers. It is nevertheless a generated challenge corpus, not a blinded real-world holdout.
@@ -66,6 +68,8 @@ Timing starts before reading and agent proposal generation. You choose a label a
 Prometheus scrapes every five seconds, evaluates every five seconds, and the experiment alerts use a ten-second pending period. Alertmanager sends to `receiver.py`, which records local receipt timestamps. The controller rejects stale notifications whose alert start precedes the fault. Latency begins before the stop command and ends at receipt; missing receipts time out and remain failures.
 
 This validates a **local webhook delivery path**. It does not measure email/SMS delivery, every fault type, or production detection guarantees. Datastore failures are detected indirectly through gateway readiness. The original production-like alert file is separate; results only apply to the experiment's configured intervals and rules.
+
+If the controller is interrupted, preserve its logs and report, restore the same isolated stack, and use `python3 -m experiments.run faults --resume-faults` to skip already completed/restored trials. Do not reuse this flag for an unrelated environment or changed alert configuration. New reports persist receipt evidence before attempting restoration, so a restoration failure cannot erase the measured observation.
 
 ## 6. Fresh-host provisioning
 

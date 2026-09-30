@@ -90,6 +90,7 @@ These remain separate from the newer claim experiments so earlier results are no
 | `experiments/recorder.py` | **Test-only** authenticated provider that records incoming synthetic prompts so the leak test checks actual exposure. Its fixed harmless response keeps input and output detection separate. |
 | `experiments/secrets.py` | Checks the frozen corpus, installs a temporary test policy, runs every case through the gateway, inspects provider records, restores policy, and calculates prevention/false-block rates. |
 | `experiments/soak.py` | Sustained asynchronous job load from 200 clients; polls results, records worker/timing metadata, saves compressed observations, and reports errors and percentiles. |
+| `experiments/summarize.py` | Checks raw compressed job counts and derives sampled CPU, memory, queue, and worker summaries with source hashes and measurement limitations. |
 | `experiments/run.py` | Local Compose controller with a fixed experiment project name. Prepares services, routes to the recorder temporarily, runs tests, samples resources, injects/restores faults, and saves evidence. |
 | `experiments/compose.yaml` | Experiment overrides: independent host ports, larger test Redis cap, three-worker setup via controller, recording provider, separate loadgen, probes, Alertmanager, receiver, and policy-benchmark container. |
 | `experiments/recording.yaml` | Narrow override directing the experiment gateway to the recording provider only during the leak test. |
@@ -149,6 +150,7 @@ These remain separate from the newer claim experiments so earlier results are no
 | `docs/VERIFICATION.md` | Historical test/CI verification and distinctions between confirmed and untested capabilities. |
 | `docs/BENCHMARKS.md` | Historical short mock/memory benchmark interpretation and reproducibility instructions. |
 | `docs/EXPERIMENTS.md` | Protocols and commands for all six claim experiments, including required human/host inputs. |
+| `docs/CLAIMS_REPORT.md` | Actual September 30 claim-validation findings, unsuccessful targets, qualifications, and remaining human/host trials. |
 | `docs/LEARNING_GUIDE.md` | Conceptual explanation of the whole project, examples, tradeoffs, and interpretation. |
 | `docs/FILE_GUIDE.md` | This file-by-file reference. |
 | `results/ci-checkpoint.json` | Recorded successful jobs/steps from the earlier GitHub CI checkpoint. |
@@ -156,6 +158,23 @@ These remain separate from the newer claim experiments so earlier results are no
 | `results/python-tests.txt` | Recorded earlier Python unit-test output; later tests may extend that suite. |
 | `results/measured-local.json` | Raw historical 10,000-request mock/memory measurements and small detection corpus results. |
 | `results/measured-initial-failures.json` | Preserved first short HTTP load run with concurrency failures, before the connection-handling repair. |
+
+The September 30 evidence bundle has these files:
+
+| File | Purpose |
+|---|---|
+| `results/claims-2026-09-30/environment.json` | Measured source/runtime, Docker version, logical CPU count, worker count, and mock-delay configuration. |
+| `results/claims-2026-09-30/secrets.json` | All 900 case outcomes, provider-call/exposure flags, aggregate prevention/false-block rates, and uncertainty interval. No raw fake credentials. |
+| `results/claims-2026-09-30/policy.json` | All individual lookup timings, paired mode order, medians, and actual negative improvement. |
+| `results/claims-2026-09-30/soak.json` | Sustained-load totals, per-minute outcomes, latency percentiles, worker completions, and limitations. |
+| `results/claims-2026-09-30/soak.samples.jsonl.gz` | Compressed per-job observations underlying the sustained-load report. |
+| `results/claims-2026-09-30/resources.jsonl` | Raw sampled Docker resource and Prometheus queue/inflight/worker-count observations. |
+| `results/claims-2026-09-30/resource-summary.json` | Derived sampled peaks/ranges, verified job count, source hashes, and sampling limitations. |
+| `results/claims-2026-09-30/faults.json` | Fault injection/stop timestamps, actual matching alert receipts, timeouts, and restoration status. |
+| `results/claims-2026-09-30/alert-receipts.jsonl` | Raw local webhook receipt timestamps, alert labels, starts, and resolved/firing states. |
+| `results/claims-2026-09-30/faults-initial-controller-failure.txt` | Preserved controller log showing the original Compose restoration error. |
+| `results/claims-2026-09-30/faults-initial-worker-trials.json` | Unmodified first three worker results preserved before resuming the fault sequence. |
+| `results/claims-2026-09-30/SHA256SUMS` | Integrity fingerprints for the retained evidence files. |
 
 ## Files intentionally outside version control
 

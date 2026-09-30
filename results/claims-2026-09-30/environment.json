@@ -1,0 +1,13 @@
+{
+  "commit": "e668a5f2e2f894b2fd1691c82589616e3c4dbe14",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T05:04:03.657628+00:00",
+  "python": "3.14.4",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "logical_cpus": 16,
+  "worker_replicas": 3,
+  "docker_version": "29.1.3",
+  "provider": "mock",
+  "mock_delay_ms": 1000,
+  "project": "privateai-evidence"
+}

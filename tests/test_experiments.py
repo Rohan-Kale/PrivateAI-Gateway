@@ -1,7 +1,10 @@
 import unittest
+from unittest.mock import patch
 from experiments.corpus import build
 from experiments.secrets import exposed,wilson
 from experiments.triage import assignment,summarize
+from experiments.summarize import memory_bytes
+from experiments.run import restore_service
 
 class SecretExperimentTests(unittest.TestCase):
     def test_deterministic_labeled_corpus(self):
@@ -33,3 +36,21 @@ class TriageStudyTests(unittest.TestCase):
         rows=[{"mode":m,"seconds":s,"wrong_attempts":1} for m,s in [("manual",10),("manual",20),("assisted",8),("assisted",10)]]
         self.assertEqual(summarize(rows,True)["median_reduction_percent"],40)
         self.assertEqual(summarize(rows,True)["wrong_attempts"],4)
+
+class ResourceSummaryTests(unittest.TestCase):
+    def test_docker_memory_units_are_not_confused(self):
+        self.assertEqual(memory_bytes("1.5MiB"),1.5*1024**2)
+        self.assertEqual(memory_bytes("1.5MB"),1500000)
+        self.assertEqual(memory_bytes("2kB"),2000)
+        with self.assertRaises(ValueError):memory_bytes("missing")
+
+class FaultControllerTests(unittest.TestCase):
+    def test_restore_does_not_scale_unselected_services(self):
+        for service in ("worker","detector","postgres","redis"):
+            with self.subTest(service=service), patch("experiments.run.command") as command, patch("experiments.run.ready") as ready:
+                restore_service(service)
+                args=command.call_args.args[0]
+                self.assertEqual(args[-1],service)
+                self.assertIn("--no-deps",args)
+                self.assertEqual("--scale" in args,service=="worker")
+                ready.assert_called_once()

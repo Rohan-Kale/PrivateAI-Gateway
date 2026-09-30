@@ -1,0 +1,98 @@
+{
+  "commit": "e668a5f2e2f894b2fd1691c82589616e3c4dbe14",
+  "working_tree_dirty": null,
+  "timestamp_utc": "2026-09-30T05:21:02.804954+00:00",
+  "python": "3.14.7",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.41",
+  "logical_cpus": 16,
+  "experiment": "sustained-queue-v1",
+  "provider": "mock with configured synthetic delay",
+  "mock_delay_ms": "1000",
+  "storage": "PostgreSQL and Redis",
+  "topology": "separate load-generator container on the same physical host; not separate hardware",
+  "duration_seconds_requested": 900,
+  "elapsed_with_drain_seconds": 905.161963095,
+  "configured_clients": 200,
+  "peak_outstanding_clients": 200,
+  "requests": 142880,
+  "statuses": {
+    "completed": 142880
+  },
+  "successful_jobs_per_second": 157.8502034171361,
+  "worker_completions": {
+    "5e9ebdef8c6a": 47665,
+    "5621aa120256": 47629,
+    "eccf4b2f4801": 47586
+  },
+  "latency_seconds": {
+    "p50": 1.262016107999898,
+    "p95": 1.2888668090000124,
+    "p99": 1.335445911999983
+  },
+  "queue_wait_seconds": {
+    "p50": 0.000952,
+    "p95": 0.001668,
+    "p99": 0.005201
+  },
+  "service_seconds": {
+    "p50": 1.089267,
+    "p95": 1.133295,
+    "p99": 1.140494
+  },
+  "per_minute_statuses": {
+    "0": {
+      "completed": 9518
+    },
+    "1": {
+      "completed": 9530
+    },
+    "2": {
+      "completed": 9496
+    },
+    "3": {
+      "completed": 9504
+    },
+    "4": {
+      "completed": 9520
+    },
+    "5": {
+      "completed": 9528
+    },
+    "6": {
+      "completed": 9530
+    },
+    "7": {
+      "completed": 9526
+    },
+    "8": {
+      "completed": 9535
+    },
+    "9": {
+      "completed": 9531
+    },
+    "10": {
+      "completed": 9536
+    },
+    "11": {
+      "completed": 9515
+    },
+    "12": {
+      "completed": 9532
+    },
+    "13": {
+      "completed": 9521
+    },
+    "14": {
+      "completed": 9558
+    }
+  },
+  "poll_interval_seconds": 0.25,
+  "samples_file": "soak.samples.jsonl.gz",
+  "target_conditions": {
+    "at_least_15_minutes": true,
+    "at_least_200_clients": true,
+    "multiple_workers_observed": true,
+    "all_jobs_completed": true
+  },
+  "limitations": "Closed-loop client concurrency; not proof of 200 simultaneous provider executions. Inspect Prometheus inflight data. Polling adds latency. No inference retries in the generator."
+}
