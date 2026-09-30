@@ -14,18 +14,61 @@ ansible/inventory.ini
 ansible/secrets.yml
 experiments/fixtures/secrets-v1.json
 experiments/fixtures/validation-v2/corpus.json
+
 # ==========================================
-# Generated benchmark / test results
+# Generated benchmark / validation results
 # ==========================================
 
-# Raw result bundles
+# Dated/raw validation bundles
 results/claims-*/
+
+# Performance improvement test runs
 results/improvement-round-*/
 
-# Raw benchmark/test artifacts
-results/**/*.jsonl
-results/**/*.jsonl.gz
-results/**/resources.jsonl
-results/**/environment.json
-results/**/alert-receipts.jsonl
-results/**/SHA256SUMS
+# Keep top-level summarized results such as:
+# results/go-benchmarks.txt
+# results/python-tests.txt
+# results/measured-local.json
+# results/measured-initial-failures.json
+# results/ci-checkpoint.json
+
+# ==========================================
+# Go
+# ==========================================
+bin/
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# ==========================================
+# Python
+# ==========================================
+__pycache__/
+*.py[cod]
+
+.venv/
+venv/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ==========================================
+# IDE / OS
+# ==========================================
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Logs / temporary files
+# ==========================================
+*.log
+*.tmp
+*.temp
