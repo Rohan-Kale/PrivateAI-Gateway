@@ -39,6 +39,7 @@ services:
     command: [python, -m, experiments.probe]
   alertmanager:
     image: prom/alertmanager:v0.28.1
+    ports: [127.0.0.1:19093:9093]
     volumes: [./experiments/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro]
     command: [--config.file=/etc/alertmanager/alertmanager.yml, --storage.path=/alertmanager]
   loadgen:
@@ -51,6 +52,7 @@ services:
       ADMIN_KEY: ${ADMIN_KEY:?run bootstrap}
       RECORDER_KEY: ${DETECTOR_KEY:?run bootstrap}
       STORE_MODE: database
+      PROVIDER_STATS_URL: http://mock:8002/stats
       MOCK_DELAY_MS: '1000'
       EVIDENCE_COMMIT: ${EVIDENCE_COMMIT:-unknown}
     volumes: [./work/evidence:/results]

@@ -55,6 +55,8 @@ def evaluate(gateway,recorder,corpus_path,output):
     valid=all(r["valid_outcome"] for r in rows)
     report={**provenance(),"experiment":"secret-exposure-v1","corpus_sha256":digest(corpus_path),"dataset_size":len(rows),"secret_cases":len(positive),"benign_cases":len(negative),"policy":policy,"provider":"recording synthetic provider","storage":os.environ.get("STORE_MODE","database"),"prevented":prevented,"exposed":sum(r["exposed"] for r in positive),"prevented_fraction":prevented/len(positive),"wilson_95":wilson(prevented,len(positive)),"benign_blocked":blocks,"false_block_fraction":blocks/len(negative),"invalid_outcomes":sum(not r["valid_outcome"] for r in rows),"target_met":valid and prevented/len(positive)>=.99,"cases":rows,"limitations":"Generated challenge cases, not a representative held-out corpus. No real credentials. Errors are not credited as successful prevention."}
     report["corpus_canonical_sha256"]=canonical
+    report["corpus_name"]=corpus.get("name")
+    report["held_out"]=corpus.get("held_out",False)
     write_report(output,report);return report
 
 

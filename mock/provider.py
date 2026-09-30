@@ -3,6 +3,7 @@ import json
 import os
 import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from mock.activity import Activity
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -11,11 +12,14 @@ class Handler(BaseHTTPRequestHandler):
         pass
 
     def do_GET(self):
+        if self.path == "/stats":return self.stats()
         self.send_response(200 if self.path == "/healthz" else 404)
         self.send_header("Content-Length", "0")
         self.end_headers()
 
     def do_POST(self):
+        if self.path == "/stats/reset":
+            return self.stats(200 if self.server.activity.reset() else 409)
         if self.path != "/v1/chat/completions":
             self.send_error(404)
             return
@@ -29,6 +33,15 @@ class Handler(BaseHTTPRequestHandler):
         except (ValueError, KeyError, TypeError):
             self.send_error(400)
             return
+        with self.server.activity.measure():
+            self.respond(request,text)
+
+    def stats(self,code=200):
+        body=json.dumps(self.server.activity.snapshot()).encode()
+        self.send_response(code);self.send_header("Content-Type","application/json")
+        self.send_header("Content-Length",str(len(body)));self.end_headers();self.wfile.write(body)
+
+    def respond(self,request,text):
         time.sleep(float(os.environ.get("MOCK_DELAY_MS", "10")) / 1000)
         self.send_response(200)
         if request.get("stream"):
@@ -54,6 +67,10 @@ class Handler(BaseHTTPRequestHandler):
 class Server(ThreadingHTTPServer):
     request_queue_size = 1024
     daemon_threads = True
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.activity=Activity()
 
 
 if __name__ == "__main__":

@@ -15,6 +15,10 @@ from experiments.common import demo_key, http, percentile, provenance, write_rep
 
 def run(url,seconds,concurrency,output,poll_seconds=.25):
     if seconds<=0 or concurrency<1:raise ValueError("positive duration/concurrency required")
+    provider_stats_url=os.environ.get("PROVIDER_STATS_URL")
+    if provider_stats_url:
+        code,provider_before=http(provider_stats_url+"/reset",{},timeout=5)
+        if code!=200:raise RuntimeError("mock provider is busy; cannot start an isolated concurrency measurement")
     key=demo_key();barrier=threading.Barrier(concurrency+1);lock=threading.Lock()
     started=deadline=0.;active=peak=0;rows=0
     statuses=Counter();workers=Counter();latencies=[];waits=[];services=[];minute_bins={}
@@ -63,6 +67,11 @@ def run(url,seconds,concurrency,output,poll_seconds=.25):
     elapsed=time.monotonic()-started
     summary=lambda values:{"p50":percentile(values,.5),"p95":percentile(values,.95),"p99":percentile(values,.99)}
     report={**provenance(),"experiment":"sustained-queue-v1","provider":"mock with configured synthetic delay","mock_delay_ms":os.environ.get("MOCK_DELAY_MS"),"storage":"PostgreSQL and Redis","topology":"separate load-generator container on the same physical host; not separate hardware","duration_seconds_requested":seconds,"elapsed_with_drain_seconds":elapsed,"configured_clients":concurrency,"peak_outstanding_clients":peak,"requests":rows,"statuses":dict(statuses),"successful_jobs_per_second":statuses["completed"]/elapsed,"worker_completions":dict(workers),"latency_seconds":summary(latencies),"queue_wait_seconds":summary(waits),"service_seconds":summary(services),"per_minute_statuses":minute_bins,"poll_interval_seconds":poll_seconds,"samples_file":samples.name,"target_conditions":{"at_least_15_minutes":seconds>=900,"at_least_200_clients":peak>=200,"multiple_workers_observed":len(workers)>=2,"all_jobs_completed":statuses["completed"]==rows},"limitations":"Closed-loop client concurrency; not proof of 200 simultaneous provider executions. Inspect Prometheus inflight data. Polling adds latency. No inference retries in the generator."}
+    if provider_stats_url:
+        code,provider_after=http(provider_stats_url,timeout=5)
+        if code!=200:raise RuntimeError("provider concurrency measurement unavailable")
+        report["provider_execution"]={"before":provider_before,"after":provider_after,"scope":"mock execution from artificial delay through response write; synchronized in one provider process"}
+        report["target_conditions"]["at_least_200_simultaneous_mock_executions"]=provider_after["peak_active"]>=200
     write_report(output,report);return report
 
 

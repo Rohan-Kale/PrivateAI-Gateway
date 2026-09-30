@@ -6,6 +6,7 @@ COPY agents ./agents
 COPY tests ./tests
 COPY experiments ./experiments
 RUN python -m experiments.corpus
+RUN python -m experiments.validation_corpus
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 USER 10001:10001
 CMD ["python", "-m", "detector.server"]

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import re
+from detector.representations import encoded_spans, jwt_spans
 
 PATTERNS = [
     ("SECRET", re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----[\s\S]*?(?:-----END (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\Z)")),
@@ -13,6 +14,21 @@ PATTERNS = [
     ("PHONE", re.compile(r"(?<!\w)(?:\+1[ .-]?)?(?:\([2-9]\d{2}\)|[2-9]\d{2})[ .-]?[2-9]\d{2}[ .-]?\d{4}(?!\d)")),
 ]
 PRIORITY = {"SECRET": 0, "SSN": 1, "CREDIT_CARD": 2, "EMAIL": 3, "PHONE": 4}
+PLACEHOLDERS = {"YOUR_API_KEY_HERE", "YOUR_PASSWORD_HERE", "YOUR_TOKEN_HERE"}
+
+
+def plain_candidates(text):
+    for kind, pattern in PATTERNS:
+        for match in pattern.finditer(text):
+            if kind == "CREDIT_CARD" and not luhn(match.group()):continue
+            # Only an exact assignment placeholder is exempted. A neighboring
+            # real credential or recognizable prefix is still inspected.
+            if pattern is PATTERNS[2][1] and match.group(1) in PLACEHOLDERS:continue
+            yield match.start(),match.end(),kind
+
+
+def has_secret(text):
+    return any(kind == "SECRET" for _,_,kind in plain_candidates(text))
 
 
 def luhn(value: str) -> bool:
@@ -26,12 +42,7 @@ def luhn(value: str) -> bool:
 def detect(text: str) -> list[dict]:
     if len(text.encode("utf-8")) > 262144:
         raise ValueError("text exceeds 256 KiB")
-    candidates = []
-    for kind, pattern in PATTERNS:
-        for match in pattern.finditer(text):
-            if kind == "CREDIT_CARD" and not luhn(match.group()):
-                continue
-            candidates.append((match.start(), match.end(), kind))
+    candidates = list(plain_candidates(text)) + list(jwt_spans(text)) + list(encoded_spans(text,has_secret))
     # Merge intersecting detections into their union, using the highest-priority
     # kind. No lower-priority portion of an overlapping secret is left exposed.
     merged = []

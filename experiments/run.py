@@ -50,6 +50,7 @@ def secrets():
     try:
         command(recording+["up","-d","--no-deps","--wait","gateway"]);ready()
         command(COMPOSE+["run","--rm","loadgen","python","-m","experiments.secrets"])
+        command(COMPOSE+["run","--rm","loadgen","python","-m","experiments.secrets","--corpus","experiments/fixtures/validation-v2/corpus.json","--output","/results/validation.json"])
     finally:
         command(COMPOSE+["up","-d","--no-deps","--wait","gateway"]);ready()
 
@@ -62,18 +63,56 @@ def restore_service(service):
     ready()
 
 
+def recovered(prometheus, alertmanager, receipts, previous=None):
+    """Require clear evaluation/routing state and delivery of a prior resolution."""
+    if prometheus.get("status") != "success" or "alerts" not in prometheus.get("data", {}):
+        return False
+    if any(a.get("state") in ("pending", "firing") for a in prometheus["data"]["alerts"]):
+        return False
+    if not isinstance(alertmanager, list) or alertmanager:
+        return False
+    if previous:
+        for firing in previous.get("alerts", []):
+            if firing.get("status") != "firing":continue
+            if not any(a.get("status") == "resolved" and a.get("labels") == firing.get("labels")
+                       and a.get("startsAt") == firing.get("startsAt")
+                       for item in receipts if item["received_at"] > previous["received_at"]
+                       for a in item.get("alerts", [])):
+                return False
+    return True
+
+
+def monitoring_ready(previous=None, timeout=300):
+    ready(); started=time.monotonic(); stable=None
+    while time.monotonic()-started < timeout:
+        try:
+            pc,prom=http("http://127.0.0.1:19090/api/v1/alerts",timeout=5)
+            ac,am=http("http://127.0.0.1:19093/api/v2/alerts?active=true&silenced=true&inhibited=true",timeout=5)
+            rc,received=http("http://127.0.0.1:18010/",timeout=5)
+            healthy=http("http://127.0.0.1:18080/readyz",timeout=3)[0]==200
+            if healthy and pc==ac==rc==200 and recovered(prom,am,received["receipts"],previous):
+                if stable is None:stable=time.monotonic()
+                if time.monotonic()-stable >= 15:
+                    return {"verified_at":utc(),"wait_seconds":time.monotonic()-started,"stable_seconds":15,"previous_resolution_verified":previous is not None}
+            else:stable=None
+        except (OSError,ValueError,KeyError,TypeError):stable=None
+        time.sleep(1)
+    raise RuntimeError("monitoring did not recover; no new fault injected")
+
+
 def faults(repeats=3,resume=False):
     report_path=OUT/"faults.json"
     previous=json.loads(report_path.read_text()) if resume and report_path.exists() else {}
     records=previous.get("records",[])
-    metadata={**provenance(),"experiment":"fault-to-local-webhook-v1","receiver":"local Alertmanager webhook; not email/SMS delivery"}
+    if previous and previous.get("experiment")!="fault-to-local-webhook-v2":raise ValueError("cannot resume a different monitoring protocol")
+    metadata={**provenance(),"experiment":"fault-to-local-webhook-v2","receiver":"local Alertmanager webhook; not email/SMS delivery"}
     if previous:metadata["resumed_from_commit"]=previous.get("commit")
     def save():write_report(report_path,{**metadata,"records":records})
     # Stop commands target only this isolated project, with restoration in finally.
     for service in ("worker","detector","postgres","redis"):
         for trial in range(repeats):
             if any(r["service"]==service and r["trial"]==trial and r.get("restoration_complete",True) for r in records):continue
-            ready();time.sleep(20)  # healthy scrape/evaluation baseline after prior restoration
+            baseline=monitoring_ready(records[-1].get("receipt") if records else None)
             injection=utc();mono=time.monotonic();receipt=None
             try:
                 command(COMPOSE+["stop","-t","2",service],stdout=subprocess.DEVNULL)
@@ -93,7 +132,7 @@ def faults(repeats=3,resume=False):
                     if receipt:break
                     time.sleep(1)
                 latency=None if receipt is None else (datetime.fromisoformat(receipt["received_at"])-datetime.fromisoformat(injection)).total_seconds()
-                records.append({"service":service,"trial":trial,"injection_requested_at":injection,"stop_completed_at":stopped,"receipt":receipt,"detection_seconds":latency,"within_120_seconds":latency is not None and latency<=120,"restoration_complete":False})
+                records.append({"service":service,"trial":trial,"baseline":baseline,"injection_requested_at":injection,"stop_completed_at":stopped,"receipt":receipt,"detection_seconds":latency,"within_120_seconds":latency is not None and latency<=120,"restoration_complete":False})
                 save()
             finally:
                 restore_service(service)

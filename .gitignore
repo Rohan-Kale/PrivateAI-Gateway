@@ -13,3 +13,4 @@ results/local-*
 ansible/inventory.ini
 ansible/secrets.yml
 experiments/fixtures/secrets-v1.json
+experiments/fixtures/validation-v2/corpus.json

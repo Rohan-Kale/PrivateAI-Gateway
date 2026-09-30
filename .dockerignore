@@ -7,3 +7,4 @@ __pycache__
 results
 *.exe
 experiments/fixtures/secrets-v1.json
+experiments/fixtures/validation-v2/corpus.json

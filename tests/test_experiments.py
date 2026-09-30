@@ -4,7 +4,8 @@ from experiments.corpus import build
 from experiments.secrets import exposed,wilson
 from experiments.triage import assignment,summarize
 from experiments.summarize import memory_bytes
-from experiments.run import restore_service
+from experiments.run import restore_service, recovered
+from mock.activity import Activity
 
 class SecretExperimentTests(unittest.TestCase):
     def test_deterministic_labeled_corpus(self):
@@ -45,6 +46,16 @@ class ResourceSummaryTests(unittest.TestCase):
         with self.assertRaises(ValueError):memory_bytes("missing")
 
 class FaultControllerTests(unittest.TestCase):
+    def test_recovery_requires_clear_routing_and_delivered_resolution(self):
+        prom={"status":"success","data":{"alerts":[]}}
+        previous={"received_at":"2026-01-01T00:00:00Z","alerts":[{"status":"firing","labels":{"service":"worker"},"startsAt":"start"}]}
+        receipt={"received_at":"2026-01-01T00:01:00Z","alerts":[{"status":"resolved","labels":{"service":"worker"},"startsAt":"start"}]}
+        self.assertFalse(recovered(prom,[],[],previous))
+        self.assertFalse(recovered(prom,[{"status":{"state":"active"}}],[receipt],previous))
+        self.assertFalse(recovered({"status":"success","data":{"alerts":[{"state":"pending"}]}},[],[receipt],previous))
+        self.assertTrue(recovered(prom,[],[receipt],previous))
+        self.assertFalse(recovered({},[],[],None))
+
     def test_restore_does_not_scale_unselected_services(self):
         for service in ("worker","detector","postgres","redis"):
             with self.subTest(service=service), patch("experiments.run.command") as command, patch("experiments.run.ready") as ready:
@@ -54,3 +65,17 @@ class FaultControllerTests(unittest.TestCase):
                 self.assertIn("--no-deps",args)
                 self.assertEqual("--scale" in args,service=="worker")
                 ready.assert_called_once()
+
+class ProviderActivityTests(unittest.TestCase):
+    def test_peak_and_exception_cleanup(self):
+        activity=Activity()
+        with activity.measure():
+            self.assertFalse(activity.reset())
+            with self.assertRaises(RuntimeError):
+                with activity.measure():raise RuntimeError("interrupted response")
+            self.assertEqual(activity.snapshot()["active"],1)
+        self.assertEqual(activity.snapshot()["peak_active"],2)
+        self.assertEqual(activity.snapshot()["active"],0)
+        self.assertEqual(activity.snapshot()["calls"],2)
+        self.assertTrue(activity.reset())
+        self.assertEqual(activity.snapshot()["peak_active"],0)

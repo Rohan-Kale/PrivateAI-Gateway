@@ -113,15 +113,16 @@ func (e *Engine) Run(ctx context.Context, tenant string, req Request) (result Re
 	mapping := map[string]string{}
 	clean := req
 	clean.Messages = append([]Message(nil), req.Messages...)
+	inputSpans, err := e.inputSpans(ctx, req.Messages)
+	if err != nil {
+		return result, err
+	}
 	for i, m := range clean.Messages {
 		if strings.Contains(m.Content, "<PAI_") {
 			return result, errors.New("reserved token prefix")
 		}
-		spans, er := e.Detector.Detect(ctx, m.Content)
-		if er != nil {
-			return result, er
-		}
-		clean.Messages[i].Content, er = transform(m.Content, spans, p, mapping)
+		var er error
+		clean.Messages[i].Content, er = transform(m.Content, inputSpans[i], p, mapping)
 		if er != nil {
 			return result, er
 		}
