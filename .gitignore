@@ -1,0 +1,14 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.cache/
+work/
+bin/
+*.exe
+*.test
+coverage.out
+results/local-*
+ansible/inventory.ini
+ansible/secrets.yml
