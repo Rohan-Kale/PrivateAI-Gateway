@@ -1,0 +1,139 @@
+name: privateai
+x-app-env: &app-env
+  STORE_MODE: database
+  DATABASE_URL: postgres://privateai:${POSTGRES_PASSWORD:?run bootstrap}@postgres:5432/privateai?sslmode=disable
+  REDIS_URL: redis://:${REDIS_PASSWORD:?run bootstrap}@redis:6379/0
+  API_KEYS: ${API_KEYS:?run bootstrap}
+  ADMIN_KEY: ${ADMIN_KEY:?run bootstrap}
+  DETECTOR_KEY: ${DETECTOR_KEY:?run bootstrap}
+  VAULT_KEY: ${VAULT_KEY:?run bootstrap}
+  DETECTOR_URL: http://detector:8001
+  PROVIDER_URL: ${PROVIDER_URL:-http://mock:8002}
+  PROVIDER_KEY: ${PROVIDER_KEY:-}
+  MAX_CONCURRENCY: ${MAX_CONCURRENCY:-32}
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: privateai
+      POSTGRES_DB: privateai
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?run bootstrap}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U privateai -d privateai']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  redis:
+    image: redis:7.4-alpine
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?run bootstrap}
+    command: [sh, -c, 'exec redis-server --appendonly yes --requirepass "$$REDIS_PASSWORD" --maxmemory 256mb --maxmemory-policy noeviction']
+    volumes: [redisdata:/data]
+    healthcheck:
+      test: [CMD-SHELL, 'REDISCLI_AUTH="$$REDIS_PASSWORD" redis-cli ping | grep PONG']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  detector:
+    image: privateai-python:local
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    environment:
+      DETECTOR_KEY: ${DETECTOR_KEY:?run bootstrap}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8001/healthz')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    restart: unless-stopped
+  mock:
+    image: privateai-python:local
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    command: [python, -m, mock.provider]
+    environment:
+      MOCK_DELAY_MS: '10'
+    read_only: true
+    cap_drop: [ALL]
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://localhost:8002/healthz')"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  gateway:
+    image: privateai-gateway:local
+    build: .
+    environment: *app-env
+    ports: [127.0.0.1:8080:8080]
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      detector: {condition: service_healthy}
+      mock: {condition: service_healthy}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/readyz]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    restart: unless-stopped
+  worker:
+    image: privateai-gateway:local
+    build: .
+    command: [worker]
+    environment: *app-env
+    depends_on:
+      gateway: {condition: service_healthy}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://127.0.0.1:8080/readyz]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    restart: unless-stopped
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerts.yml:/etc/prometheus/alerts.yml:ro
+    ports: [127.0.0.1:9090:9090]
+    depends_on: [gateway, worker]
+  integration:
+    profiles: [test]
+    image: privateai-python:local
+    environment:
+      <<: *app-env
+      GATEWAY_URL: http://gateway:8080
+      TEST_QUEUE: '1'
+    command: [python, tests/integration_http.py]
+    depends_on:
+      gateway: {condition: service_healthy}
+      worker: {condition: service_healthy}
+  database-test:
+    profiles: [test]
+    build:
+      context: .
+      target: integration-test
+    environment:
+      TEST_DATABASE_URL: postgres://privateai:${POSTGRES_PASSWORD:?run bootstrap}@postgres:5432/privateai?sslmode=disable
+      TEST_REDIS_URL: redis://:${REDIS_PASSWORD:?run bootstrap}@redis:6379/0
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+volumes:
+  pgdata:
+  redisdata:

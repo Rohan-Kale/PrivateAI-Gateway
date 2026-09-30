@@ -1,0 +1,83 @@
+---
+- name: Install container runtime
+  ansible.builtin.apt:
+    name: [docker.io, ca-certificates]
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Enable Docker
+  ansible.builtin.systemd_service:
+    name: docker
+    enabled: true
+    state: started
+
+- name: Install optional KVM tools
+  ansible.builtin.apt:
+    name: [qemu-kvm, libvirt-daemon-system, libvirt-clients]
+    state: present
+  when: privateai_enable_kvm | bool
+
+- name: Create worker configuration directory
+  ansible.builtin.file:
+    path: /etc/privateai
+    state: directory
+    mode: '0700'
+    owner: root
+    group: root
+
+- name: Write worker environment
+  ansible.builtin.template:
+    src: worker.env.j2
+    dest: '{{ privateai_env_file }}'
+    mode: '0600'
+  no_log: true
+  notify: Restart privateai worker
+
+- name: Pull the explicitly selected worker image
+  ansible.builtin.command:
+    argv: [docker, pull, '{{ privateai_image }}']
+  register: privateai_pull
+  changed_when: "'Downloaded newer image' in privateai_pull.stdout"
+  when: not ansible_check_mode
+  notify: Restart privateai worker
+
+- name: Install worker systemd service
+  ansible.builtin.template:
+    src: privateai-worker.service.j2
+    dest: /etc/systemd/system/privateai-worker.service
+    mode: '0644'
+  notify: Restart privateai worker
+
+- name: Install firewall tooling when explicitly enabled
+  ansible.builtin.apt:
+    name: ufw
+    state: present
+  when: privateai_manage_firewall | bool
+
+- name: Check firewall rules before changes
+  ansible.builtin.command: ufw status
+  register: privateai_ufw
+  changed_when: false
+  check_mode: false
+  when: privateai_manage_firewall | bool
+
+- name: Permit SSH from the configured management network
+  ansible.builtin.command:
+    argv: [ufw, allow, from, '{{ privateai_ssh_cidr }}', to, any, port, '22', proto, tcp]
+  register: privateai_ssh_rule
+  changed_when: "'Rule added' in privateai_ssh_rule.stdout or 'Rules updated' in privateai_ssh_rule.stdout"
+  when: privateai_manage_firewall | bool
+
+- name: Enable host firewall after allowing SSH
+  ansible.builtin.command: ufw --force enable
+  when: "privateai_manage_firewall | bool and 'Status: active' not in privateai_ufw.stdout"
+  changed_when: true
+
+- name: Enable worker service
+  ansible.builtin.systemd_service:
+    name: privateai-worker
+    daemon_reload: true
+    enabled: true
+    state: started
+  when: not ansible_check_mode

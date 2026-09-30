@@ -1,0 +1,6 @@
+---
+- name: Restart privateai worker
+  ansible.builtin.systemd_service:
+    name: privateai-worker
+    daemon_reload: true
+    state: restarted

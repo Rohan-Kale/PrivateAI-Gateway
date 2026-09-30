@@ -1,0 +1,34 @@
+name: test-and-compose
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with: {go-version: '1.26.x'}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - run: go vet ./...
+      - run: go test -race -coverprofile=coverage.out ./...
+      - run: python -m unittest discover -s tests -v
+      - run: python scripts/bootstrap.py
+      - run: docker compose up --build -d --wait
+      - run: docker compose --profile test run --rm integration
+      - run: docker compose --profile test run --build --rm database-test
+      - run: docker compose exec -T prometheus promtool check config /etc/prometheus/prometheus.yml
+      - if: always()
+        run: docker compose down -v
+  manifests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.13'}
+      - run: pip install -r requirements-dev.txt
+      - run: python scripts/check_manifests.py
+      - run: ansible-playbook -i ansible/inventory.example.ini ansible/provision.yml --syntax-check
+      - run: kubectl kustomize kubernetes > /tmp/privateai-rendered.yaml

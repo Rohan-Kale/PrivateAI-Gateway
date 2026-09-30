@@ -1,0 +1,31 @@
+---
+- name: Provision PrivateAI inference worker hosts
+  hosts: workers
+  become: true
+  vars:
+    privateai_image: privateai-gateway:local
+    privateai_enable_kvm: false
+    privateai_manage_firewall: false
+    privateai_ssh_cidr: ''
+    privateai_env_file: /etc/privateai/worker.env
+    privateai_worker_env: {}
+  pre_tasks:
+    - name: Validate host and required explicit configuration
+      ansible.builtin.assert:
+        that:
+          - ansible_distribution == 'Ubuntu'
+          - ansible_distribution_version == '24.04'
+          - privateai_worker_env | length > 0
+          - privateai_worker_env.DATABASE_URL is defined
+          - privateai_worker_env.REDIS_URL is defined
+          - privateai_worker_env.VAULT_KEY is defined
+          - privateai_worker_env.API_KEYS is defined
+          - privateai_worker_env.ADMIN_KEY is defined
+          - privateai_worker_env.DETECTOR_KEY is defined
+          - privateai_worker_env.DETECTOR_URL is defined
+          - privateai_worker_env.PROVIDER_URL is defined
+          - not privateai_manage_firewall or privateai_ssh_cidr | length > 0
+        fail_msg: Provide worker secrets via Ansible Vault; target Ubuntu 24.04 and set an SSH source CIDR before managing the firewall.
+      no_log: true
+  roles:
+    - worker

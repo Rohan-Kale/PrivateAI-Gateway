@@ -1,0 +1,17 @@
+groups:
+  - name: privateai
+    rules:
+      - alert: GatewayUnavailable
+        expr: absent(up{job="privateai-gateway"}) or up{job="privateai-gateway"} == 0
+        for: 2m
+        labels: {severity: critical}
+        annotations: {summary: 'Gateway metrics endpoint unavailable'}
+      - alert: GatewayErrorRatioHigh
+        expr: sum(rate(privateai_errors_total[5m])) / clamp_min(sum(rate(privateai_requests_total[5m])), 0.001) > 0.1
+        for: 5m
+        labels: {severity: warning}
+        annotations: {summary: 'More than 10% of inference requests failed or were blocked; inspect policy blocks separately'}
+      - alert: WorkerJobsFailing
+        expr: sum(increase(privateai_jobs_failed_total[10m])) > 0
+        labels: {severity: warning}
+        annotations: {summary: 'Queue jobs reached a terminal failure'}

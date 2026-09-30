@@ -1,0 +1,33 @@
+name: engineering-agents
+on:
+  issues:
+    types: [opened, edited, reopened]
+  pull_request:
+    types: [opened, synchronize, reopened]
+permissions:
+  contents: read
+jobs:
+  triage:
+    if: github.event_name == 'issues'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - run: python -m agents.issue_triage "$GITHUB_EVENT_PATH" --output triage-report.json
+      - uses: actions/upload-artifact@v4
+        with: {name: triage-advisory, path: triage-report.json}
+  pr-check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.14'}
+      - run: python -m agents.pr_check --base "$BASE_SHA" --output pr-report.json
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: pr-check-advisory, path: pr-report.json}
