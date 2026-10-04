@@ -70,6 +70,13 @@ To visualize the running stack, see the optional [Grafana dashboard](docs/GRAFAN
 It includes request rates, blocks/errors, queue depth, worker health, cache hits,
 latency histograms, and firing Prometheus alerts, provisioned automatically.
 
+![Grafana dashboard showing request rates, policy blocks, queue outcomes, response cache hits, and three reachable workers](docs/images/grafana-dashboard.png)
+
+*Actual local Prometheus observations from synthetic traffic against the echo
+provider with three workers. Captured after the smoke run finished, so current
+activity is zero while the charts retain the run's history. This is a dashboard
+demonstration, not a real-model performance benchmark.*
+
 ## Run without Docker
 
 Requires Go 1.24+ and Python 3.11+. This command builds the gateway, launches isolated loopback detector/mock services, exercises the HTTP API, and stops all child processes:
