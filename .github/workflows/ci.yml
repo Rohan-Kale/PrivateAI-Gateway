@@ -20,8 +20,11 @@ jobs:
       - run: docker compose --profile test run --rm integration
       - run: docker compose --profile test run --build --rm database-test
       - run: docker compose exec -T prometheus promtool check config /etc/prometheus/prometheus.yml
+      - run: python scripts/setup_grafana.py
+      - run: docker compose -f compose.yaml -f compose.grafana.yaml up -d --no-deps --wait grafana
+      - run: python scripts/check_grafana.py
       - if: always()
-        run: docker compose down -v
+        run: docker compose down -v --remove-orphans
   manifests:
     runs-on: ubuntu-latest
     steps:

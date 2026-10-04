@@ -118,6 +118,18 @@ These remain separate from the newer claim experiments so earlier results are no
 
 ## Infrastructure and monitoring
 
+The optional Grafana integration is described in [GRAFANA.md](GRAFANA.md):
+
+| File | Purpose |
+|---|---|
+| `compose.grafana.yaml` | Opt-in local Grafana service, persistent database, loopback port, and provisioning mounts. |
+| `monitoring/grafana/provisioning/datasources/prometheus.yaml` | Connects Grafana to the internal Prometheus URL with a stable data-source UID. |
+| `monitoring/grafana/provisioning/dashboards/privateai.yaml` | Loads the repository dashboard into the PrivateAI folder. |
+| `monitoring/grafana/dashboards/privateai.json` | Fifteen panels of existing metrics, including shared-queue deduplication and documented latency semantics. |
+| `scripts/setup_grafana.py` | Adds a separate generated Grafana password to ignored `.env` without replacing application keys. |
+| `scripts/check_grafana.py` | Verifies provisioned content and every panel expression through Grafana's live Prometheus proxy. |
+| `docs/GRAFANA.md` | Startup, panel interpretation, verification, and persistence instructions. |
+
 | File | Purpose |
 |---|---|
 | `migrations/001_init.sql` | Creates the policies table and initial demo policy. Docker/Kubernetes initialization executes it for a new database. |

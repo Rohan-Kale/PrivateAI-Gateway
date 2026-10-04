@@ -8,6 +8,10 @@
 4. Run `docker compose --profile test run --rm integration` and `docker compose --profile test run --build --rm database-test`.
 5. Inspect health with `docker compose ps` and metrics at `http://127.0.0.1:9090`.
 
+For an automatically provisioned local dashboard, follow [Grafana setup](GRAFANA.md).
+The optional `compose.grafana.yaml` overlay adds an authenticated Grafana instance
+at `http://127.0.0.1:3000` connected to the same Prometheus service.
+
 `docker compose stop` preserves data. `docker compose down` removes containers and networks but preserves named volumes. `docker compose down -v` **deletes the demo PostgreSQL and Redis data**; use it only for a deliberate reset. PostgreSQL's entrypoint runs `migrations/001_init.sql` only on an empty data directory. Apply later migrations explicitly against existing databases; this project currently has one initial schema migration.
 
 The database role is an all-in-one demo role. For a production-oriented extension separate schema migration ownership from runtime query/update grants. Redis has AOF enabled and a 256 MiB `noeviction` memory cap; when exhausted, writes fail closed. There is no Sentinel/Cluster failover or replicated PostgreSQL configuration here.

@@ -66,6 +66,10 @@ The example starts at version 1. An outdated version returns HTTP 409; get the c
 }
 ```
 
+To visualize the running stack, see the optional [Grafana dashboard](docs/GRAFANA.md).
+It includes request rates, blocks/errors, queue depth, worker health, cache hits,
+latency histograms, and firing Prometheus alerts, provisioned automatically.
+
 ## Run without Docker
 
 Requires Go 1.24+ and Python 3.11+. This command builds the gateway, launches isolated loopback detector/mock services, exercises the HTTP API, and stops all child processes:
